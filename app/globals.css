@@ -1,0 +1,95 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@theme inline {
+  --font-sans: var(--font-plex), 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-pt-serif), 'PT Serif Caption', ui-serif, Georgia, serif;
+
+  --color-navy: var(--navy);
+  --color-navy-foreground: var(--navy-foreground);
+  --color-pale: var(--pale);
+
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+}
+
+/* Brand palette: navy #020553, blue #1943DC, pale #D7E7FF, white, grey #4E596B */
+:root {
+  color-scheme: light;
+  --navy: #020553;
+  --navy-foreground: #ffffff;
+  --pale: #d7e7ff;
+
+  --background: #ffffff;
+  --foreground: #020553;
+  --card: #ffffff;
+  --card-foreground: #020553;
+  --popover: #ffffff;
+  --popover-foreground: #020553;
+  --primary: #1943dc;
+  --primary-foreground: #ffffff;
+  --secondary: #d7e7ff;
+  --secondary-foreground: #020553;
+  --muted: #d7e7ff;
+  --muted-foreground: #4e596b;
+  --accent: #d7e7ff;
+  --accent-foreground: #020553;
+  --destructive: #b42318;
+  --border: #d7e7ff;
+  --input: #4e596b;
+  --ring: #1943dc;
+  --radius: 0.25rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+  }
+  .on-navy :focus-visible {
+    outline-color: var(--pale);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
