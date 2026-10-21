@@ -1,15 +1,15 @@
 import type { Metadata } from 'next'
 import { Hero } from '@/components/home/hero'
 import {
-  AffiliationPanel,
-  DeliveryProcess,
-  Introduction,
-  SectorExperience,
-  SelectedAssignments,
-  SolutionsOverview,
-  SuppliedBrands,
+  AffiliationFeature,
+  BrandsRow,
+  FactsBand,
+  HomeCta,
+  SectorIndex,
+  SelectedWork,
+  SolutionTiles,
+  Statement,
 } from '@/components/home/home-sections'
-import { ClosingCta } from '@/components/site/page-primitives'
 
 export const metadata: Metadata = {
   title: { absolute: 'Western Premium | Reliable equipment. Lasting value.' },
@@ -20,14 +20,14 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <Introduction />
-      <SolutionsOverview />
-      <SectorExperience />
-      <SelectedAssignments />
-      <SuppliedBrands />
-      <AffiliationPanel />
-      <DeliveryProcess />
-      <ClosingCta />
+      <Statement />
+      <FactsBand />
+      <SolutionTiles />
+      <SectorIndex />
+      <AffiliationFeature />
+      <SelectedWork />
+      <BrandsRow />
+      <HomeCta />
     </>
   )
 }
