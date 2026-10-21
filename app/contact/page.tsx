@@ -3,8 +3,8 @@ import { Clock, ExternalLink, Mail, MapPin, MessageCircle, Phone } from 'lucide-
 import { QuoteForm } from '@/components/contact/quote-form'
 import { Container, Eyebrow, Pending } from '@/components/site/page-primitives'
 import { actionClasses } from '@/components/site/action-link'
-import { company, contactPage as copy, quoteForm, solutionOptions } from '@/content/company'
-import { getFormConfig, showConfigDiagnostics } from '@/lib/quote-server'
+import { company, contactPage as copy, solutionOptions } from '@/content/company'
+import { getFormConfig } from '@/lib/quote-server'
 
 export const metadata: Metadata = {
   title: copy.title,
@@ -28,49 +28,10 @@ function ContactRow({ icon: Icon, label, children }: { icon: typeof Phone; label
   )
 }
 
-/** Shown on the production site when the form backend is not configured, so visitors never see a broken form. */
-function FormFallback() {
-  const f = quoteForm.fallback
-  return (
-    <div className="flex flex-col gap-6 border-t-2 border-primary bg-pale/40 p-8 md:p-10">
-      <h2 className="font-serif text-2xl text-navy md:text-3xl">{f.heading}</h2>
-      <p className="max-w-xl text-pretty leading-relaxed text-muted-foreground">{f.body}</p>
-      <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-        <a href={`mailto:${company.enquiriesEmail}`} className={actionClasses('primary', 'w-full sm:w-auto')}>
-          <Mail className="size-4" aria-hidden="true" />
-          {f.emailAction}
-        </a>
-        <a
-          href={whatsappLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={actionClasses('outline', 'w-full sm:w-auto')}
-        >
-          <MessageCircle className="size-4" aria-hidden="true" />
-          {f.whatsappAction}
-          <span className="sr-only"> {copy.newTab}</span>
-        </a>
-      </div>
-      <p className="text-sm text-muted-foreground">
-        <span className="break-all font-medium text-navy">{company.enquiriesEmail}</span>
-        <span aria-hidden="true"> · </span>
-        {f.phoneLabel}{' '}
-        <a href={company.phoneHref} className="font-medium text-navy hover:text-primary hover:underline">
-          {company.phone}
-        </a>
-      </p>
-    </div>
-  )
-}
-
 export default async function ContactPage({ searchParams }: { searchParams: Promise<{ solution?: string }> }) {
   const { solution } = await searchParams
   const defaultSolution = solutionOptions.some((o) => o.value === solution) ? solution : undefined
   const mapsKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_EMBED_KEY
-  const formConfig = getFormConfig()
-  const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY
-  const formReady = formConfig.turnstile && formConfig.resend && Boolean(turnstileSiteKey)
-  const showDiagnostics = showConfigDiagnostics()
 
   return (
     <section>
@@ -166,16 +127,11 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
         </div>
 
         <div className="relative lg:col-span-7">
-          {formReady || showDiagnostics ? (
-            <QuoteForm
-              defaultSolution={defaultSolution}
-              config={formConfig}
-              turnstileSiteKey={turnstileSiteKey}
-              showDiagnostics={showDiagnostics}
-            />
-          ) : (
-            <FormFallback />
-          )}
+          <QuoteForm
+            defaultSolution={defaultSolution}
+            config={getFormConfig()}
+            turnstileSiteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+          />
         </div>
       </Container>
     </section>

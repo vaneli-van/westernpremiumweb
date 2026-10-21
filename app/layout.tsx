@@ -4,7 +4,6 @@ import { IBM_Plex_Sans, PT_Serif_Caption } from 'next/font/google'
 import { SiteHeader } from '@/components/site/site-header'
 import { SiteFooter } from '@/components/site/site-footer'
 import { OrganizationJsonLd } from '@/components/site/organization-json-ld'
-import { BreadcrumbJsonLd } from '@/components/site/breadcrumb-json-ld'
 import { company } from '@/content/company'
 import './globals.css'
 
@@ -34,6 +33,7 @@ export const metadata: Metadata = {
   },
   description: defaultDescription,
   applicationName: company.brandName,
+  generator: 'v0.app',
   openGraph: {
     type: 'website',
     siteName: company.brandName,
@@ -76,7 +76,6 @@ export default function RootLayout({
           Skip to content
         </a>
         <OrganizationJsonLd />
-        <BreadcrumbJsonLd />
         <SiteHeader />
         <main id="main">{children}</main>
         <SiteFooter />

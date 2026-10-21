@@ -29,7 +29,7 @@ export function Hero() {
             <p className="-mt-4 text-sm text-muted-foreground">Quotations typically returned {company.quoteResponseTime}.</p>
           )}
           <p className="border-t border-border pt-5 text-sm text-muted-foreground">
-            {company.heroSupportingLine}
+            Established in Ghana in 2015. Supporting institutional and commercial operations.
           </p>
         </div>
 
