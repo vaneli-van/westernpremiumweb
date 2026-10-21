@@ -31,6 +31,14 @@ export const company = {
   registrationNumber: null as string | null,
   /** Business hours. Renders as [BUSINESS_HOURS] while null. */
   businessHours: 'Monday to Friday, 08:00 to 17:00 GMT' as string | null,
+  /** Machine-readable opening hours for search engines. Keep in step with businessHours. */
+  openingHours: {
+    days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    opens: '08:00',
+    closes: '17:00',
+  },
+  /** Countries listed as served in search-engine data. */
+  areaServed: ['Ghana', 'West Africa'],
   /** WhatsApp number in international format, digits only, used for wa.me links. */
   whatsappNumber: '233552836232',
   whatsappMessage: 'Hello Western Premium, I would like to request a quotation.',
@@ -330,6 +338,15 @@ export const quoteForm = {
     upload: 'We could not upload your attachment.',
     notConfigured: 'The quotation form is not yet connected to its email service.',
   },
+  fallback: {
+    heading: 'Send us your requirement',
+    body: 'Email your specification, quantities, delivery location and timeline to our sales team, or message us on WhatsApp. Attach any bill of quantities or tender documents to the email.',
+    emailAction: 'Email the sales team',
+    whatsappAction: 'Message us on WhatsApp',
+    phoneLabel: 'Or call',
+  },
+  attachmentUnavailable:
+    'To share a specification or bill of quantities, email it to the sales team and quote the reference number you receive after sending this form.',
   banners: {
     turnstile: 'Form backend not configured: Turnstile key missing',
     resend: 'Form backend not configured: Resend key missing',
@@ -759,7 +776,7 @@ export const leadership: Leader[] = [
 
 export const aboutPage = {
   title: 'About Western Premium',
-  statement: 'An indigenous Ghanaian company, built around institutional procurement.',
+  statement: 'An indigenous Ghanaian company built around institutional procurement.',
   metaDescription:
     'Western Premium Company Limited is an indigenous Ghanaian company in Accra supplying IT equipment, industrial spares and operational essentials to institutional and commercial buyers.',
   story: [

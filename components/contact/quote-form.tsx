@@ -65,10 +65,13 @@ export function QuoteForm({
   defaultSolution,
   config,
   turnstileSiteKey,
+  showDiagnostics = false,
 }: {
   defaultSolution?: string
   config: FormConfig
   turnstileSiteKey?: string
+  /** Show configuration banners. False on the production site. */
+  showDiagnostics?: boolean
 }) {
   const [reference, setReference] = useState<string | null>(null)
   const [failure, setFailure] = useState<string | null>(null)
@@ -172,9 +175,9 @@ export function QuoteForm({
 
   return (
     <form onSubmit={handleSubmit(onValid)} noValidate className="flex flex-col gap-6">
-      {!config.turnstile && <ConfigBanner>{copy.banners.turnstile}</ConfigBanner>}
-      {!config.resend && <ConfigBanner>{copy.banners.resend}</ConfigBanner>}
-      {!config.blob && <ConfigBanner>{copy.banners.blob}</ConfigBanner>}
+      {showDiagnostics && !config.turnstile && <ConfigBanner>{copy.banners.turnstile}</ConfigBanner>}
+      {showDiagnostics && !config.resend && <ConfigBanner>{copy.banners.resend}</ConfigBanner>}
+      {showDiagnostics && !config.blob && <ConfigBanner>{copy.banners.blob}</ConfigBanner>}
 
       <p className="text-sm text-muted-foreground">
         <span aria-hidden="true" className="mr-1 text-primary">
@@ -370,32 +373,44 @@ export function QuoteForm({
         <FieldError id="timeline-error" message={err('timeline')} />
       </div>
 
-      <div className="flex flex-col gap-2">
-        <FieldLabel field="attachment" />
-        <p id="attachment-hint" className="text-sm text-muted-foreground">
-          {copy.hints.attachment}
+      {config.blob || showDiagnostics ? (
+        <div className="flex flex-col gap-2">
+          <FieldLabel field="attachment" />
+          <p id="attachment-hint" className="text-sm text-muted-foreground">
+            {copy.hints.attachment}
+          </p>
+          <Controller
+            control={control}
+            name="attachment"
+            render={({ field }) => (
+              <input
+                id="attachment"
+                ref={field.ref}
+                name={field.name}
+                onBlur={field.onBlur}
+                onChange={(e) => field.onChange(e.target.files?.[0] ?? undefined)}
+                type="file"
+                accept={ATTACHMENT_ACCEPT}
+                disabled={!config.blob}
+                aria-invalid={!!errors.attachment}
+                aria-describedby={describedBy('attachment-hint', errors.attachment && 'attachment-error')}
+                className="w-full text-sm text-muted-foreground file:mr-4 file:rounded-sm file:border file:border-navy file:bg-background file:px-4 file:py-2.5 file:text-sm file:font-medium file:text-navy hover:file:bg-pale disabled:cursor-not-allowed disabled:opacity-60"
+              />
+            )}
+          />
+          <FieldError id="attachment-error" message={err('attachment')} />
+        </div>
+      ) : (
+        <p className="flex gap-3 border-l-2 border-primary bg-pale/40 p-4 text-sm leading-relaxed text-navy">
+          <Info className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true" />
+          <span>
+            {copy.attachmentUnavailable}{' '}
+            <a href={`mailto:${company.enquiriesEmail}`} className="font-medium underline underline-offset-2">
+              {company.enquiriesEmail}
+            </a>
+          </span>
         </p>
-        <Controller
-          control={control}
-          name="attachment"
-          render={({ field }) => (
-            <input
-              id="attachment"
-              ref={field.ref}
-              name={field.name}
-              onBlur={field.onBlur}
-              onChange={(e) => field.onChange(e.target.files?.[0] ?? undefined)}
-              type="file"
-              accept={ATTACHMENT_ACCEPT}
-              disabled={!config.blob}
-              aria-invalid={!!errors.attachment}
-              aria-describedby={describedBy('attachment-hint', errors.attachment && 'attachment-error')}
-              className="w-full text-sm text-muted-foreground file:mr-4 file:rounded-sm file:border file:border-navy file:bg-background file:px-4 file:py-2.5 file:text-sm file:font-medium file:text-navy hover:file:bg-pale disabled:cursor-not-allowed disabled:opacity-60"
-            />
-          )}
-        />
-        <FieldError id="attachment-error" message={err('attachment')} />
-      </div>
+      )}
 
       <div className="flex flex-col gap-2 border-t border-border pt-6">
         <div className="flex items-start gap-3">
