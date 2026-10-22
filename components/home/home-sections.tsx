@@ -104,7 +104,7 @@ export function WhoWeAre() {
           <Rule />
           <Heading id="who-title">Who we are</Heading>
         </div>
-        <div className="grid gap-10 md:grid-cols-2 md:gap-9">
+        <div className="grid gap-10 md:grid-cols-2 md:items-center md:gap-12">
           <div className="flex flex-col gap-7 text-[17px] font-light leading-relaxed text-muted-foreground">
             <p className="text-pretty">
               Organisations depend on the right equipment arriving as specified, when it is needed. Since{' '}
@@ -118,10 +118,10 @@ export function WhoWeAre() {
             </p>
             <PillLink href="/about">Discover more</PillLink>
           </div>
-          <div className="relative aspect-video overflow-hidden bg-navy">
+          <div className="relative aspect-square overflow-hidden bg-navy">
             <Image
-              src="/images/logistics.png"
-              alt="Equipment consignments being prepared for delivery"
+              src="/images/who-we-are.jpg"
+              alt="A Western Premium field technician checks a crated valve against its delivery record on a tablet"
               fill
               sizes="(min-width: 768px) 560px, 100vw"
               className="object-cover"
