@@ -82,13 +82,13 @@ export function WhatWeDo() {
   }
 
   return (
-    <div className="flex flex-col border border-border bg-pale/25 md:flex-row">
+    <div className="flex flex-col border border-border bg-background shadow-[0_24px_48px_-24px_rgb(0_0_0/0.35)] md:flex-row">
       <div
         role="tablist"
         aria-orientation="vertical"
         aria-label="Our solutions"
         onKeyDown={onKeyDown}
-        className="flex overflow-x-auto md:w-[16.5rem] md:shrink-0 md:flex-col md:overflow-visible"
+        className="flex overflow-x-auto bg-pale/55 md:w-[16.5rem] md:shrink-0 md:flex-col md:overflow-visible md:border-r md:border-border"
       >
         {solutions.map((s, i) => {
           const isActive = i === active
@@ -106,10 +106,10 @@ export function WhatWeDo() {
               tabIndex={isActive ? 0 : -1}
               onClick={() => setActive(i)}
               className={cn(
-                'flex min-w-48 shrink-0 items-center border-b border-r border-border px-6 py-6 text-left text-[15px] leading-snug text-navy transition-colors md:min-h-[6.5rem] md:min-w-0 md:px-10',
+                'relative flex min-w-48 shrink-0 items-center border-b border-border px-6 py-6 text-left text-[15px] leading-snug text-navy transition-colors md:-mr-px md:min-h-[6.5rem] md:min-w-0 md:px-10',
                 isActive
-                  ? 'border-r-transparent bg-pale/25 font-semibold shadow-[inset_0_-4px_0_var(--primary)] md:shadow-[inset_4px_0_0_var(--primary)]'
-                  : 'bg-pale/55 hover:bg-pale/25',
+                  ? 'bg-background font-semibold shadow-[inset_0_-4px_0_var(--primary)] md:shadow-[inset_4px_0_0_var(--primary)]'
+                  : 'hover:bg-background/60',
               )}
             >
               {s.title}
@@ -126,7 +126,7 @@ export function WhatWeDo() {
           aria-labelledby={`tab-${s.id}`}
           hidden={i !== active}
           tabIndex={0}
-          className="flex-1 px-6 py-10 md:px-[3.75rem]"
+          className="flex-1 bg-background px-6 py-10 md:px-[3.75rem]"
         >
           <p className="text-pretty text-[15px] font-light leading-relaxed text-muted-foreground">{s.paragraphs[0]}</p>
           <div className="flex flex-col gap-2 pt-12">
