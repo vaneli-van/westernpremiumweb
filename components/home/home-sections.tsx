@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, ArrowUpRight } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { ActionLink } from '@/components/site/action-link'
 import { Container } from '@/components/site/page-primitives'
 import { AssignmentCard } from '@/components/sections/assignment-card'
@@ -13,7 +13,6 @@ import {
   sourcingNetwork,
   suppliedBrands,
   whatsappHref,
-  type SolutionId,
 } from '@/content/company'
 import { cn } from '@/lib/utils'
 
@@ -85,74 +84,34 @@ export function FactsBand() {
   )
 }
 
-const tileImages: Record<SolutionId, { src: string; alt: string }> = {
-  'enterprise-it': {
-    src: '/images/hero-equipment.png',
-    alt: 'New business laptops, tablets and boxed printer consumables',
-  },
-  'technology-operations': {
-    src: '/images/home-datacentre.png',
-    alt: 'Rows of server racks in an enterprise data centre',
-  },
-  'industrial-mro': { src: '/images/industrial.png', alt: 'Industrial spares and electrical switchgear' },
-  'asset-governance': { src: '/images/logistics.png', alt: 'Labelled cartons and pallets on warehouse racking' },
-}
-
-const tileSpans = ['lg:col-span-7', 'lg:col-span-5', 'lg:col-span-5', 'lg:col-span-7']
-
-export function SolutionTiles() {
+export function ServicesStrip() {
   return (
-    <section aria-labelledby="solutions-title" className="bg-pale/40">
-      <Container className="flex flex-col gap-12 py-24 md:py-32">
-        <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
-          <div className="flex max-w-3xl flex-col gap-6">
-            <SectionLabel>What we supply</SectionLabel>
-            <SectionHeading id="solutions-title" className="text-navy">
-              Four capabilities. One coordinated supply process.
-            </SectionHeading>
-          </div>
-          <ActionLink href="/solutions" variant="text" arrow className="shrink-0 text-base">
-            All solutions
-          </ActionLink>
-        </div>
-        <ul className="grid gap-4 lg:grid-cols-12">
-          {solutions.map((s, i) => {
-            const img = tileImages[s.id]
-            return (
-              <li key={s.id} className={tileSpans[i]}>
-                <Link
-                  href={`/solutions#${s.id}`}
-                  className="on-navy group relative isolate flex aspect-[4/3] flex-col justify-end overflow-hidden rounded-sm bg-navy p-6 text-navy-foreground md:aspect-[16/10] md:p-8"
-                >
-                  <Image
-                    src={img.src}
-                    alt={img.alt}
-                    fill
-                    sizes="(min-width: 1024px) 58vw, 100vw"
-                    className="-z-20 object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div
-                    aria-hidden="true"
-                    className="absolute inset-0 -z-10 bg-gradient-to-t from-navy via-navy/50 to-transparent"
-                  />
-                  <div className="flex items-end justify-between gap-6">
-                    <div className="flex max-w-md flex-col gap-3">
-                      {s.affiliated && (
-                        <p className="text-xs font-medium uppercase tracking-widest text-pale">Via Asset One Africa</p>
-                      )}
-                      <h3 className="text-balance font-sans text-2xl font-medium tracking-tight md:text-3xl">
-                        {s.title}
-                      </h3>
-                      <p className="text-pretty text-sm leading-relaxed text-pale md:text-base">{s.summary}</p>
-                    </div>
-                    <span className="flex size-11 shrink-0 items-center justify-center rounded-full border border-navy-foreground/40 transition-colors group-hover:border-primary group-hover:bg-primary">
-                      <ArrowUpRight className="size-5" aria-hidden="true" />
-                    </span>
-                  </div>
-                </Link>
-              </li>
-            )
-          })}
+    <section id="services" aria-labelledby="services-title" className="scroll-mt-20 border-b border-border bg-pale/30">
+      <h2 id="services-title" className="sr-only">
+        Our services
+      </h2>
+      <Container>
+        <ul className="grid md:grid-cols-2 lg:grid-cols-4">
+          {solutions.map((s) => (
+            <li
+              key={s.id}
+              className="border-b border-navy/15 last:border-b-0 md:odd:pr-8 md:even:border-l md:even:pl-8 md:[&:nth-child(-n+2)]:border-b lg:border-b-0 lg:border-l lg:px-8 lg:first:border-l-0 lg:first:pl-0 lg:last:pr-0 lg:[&:nth-child(-n+2)]:border-b-0"
+            >
+              <Link href={`/solutions#${s.id}`} className="group flex h-full flex-col gap-3 py-10">
+                <p className="text-base font-medium text-primary">{s.title}</p>
+                <p className="text-sm text-muted-foreground">
+                  {s.affiliated ? 'Via Asset One Africa' : 'Western Premium'}
+                </p>
+                <p className="text-pretty text-lg leading-relaxed text-navy transition-colors group-hover:text-primary">
+                  {s.summary}
+                </p>
+                <span className="mt-auto flex items-center gap-2 pt-2 text-sm font-medium text-navy">
+                  Learn more
+                  <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                </span>
+              </Link>
+            </li>
+          ))}
         </ul>
       </Container>
     </section>

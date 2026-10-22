@@ -7,7 +7,7 @@ import {
   HomeCta,
   SectorIndex,
   SelectedWork,
-  SolutionTiles,
+  ServicesStrip,
   Statement,
 } from '@/components/home/home-sections'
 
@@ -20,9 +20,9 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <ServicesStrip />
       <Statement />
       <FactsBand />
-      <SolutionTiles />
       <SectorIndex />
       <AffiliationFeature />
       <SelectedWork />
