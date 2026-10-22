@@ -54,15 +54,15 @@ const featured: Record<SolutionId, Featured[]> = {
   ],
   'asset-governance': [
     {
-      title: 'Asset tracking with Asset One Africa',
+      title: 'Asset tracking with AssetOne',
       description: 'A dependable record of what you hold, where it is, and who is responsible.',
-      href: '/asset-one-africa',
+      href: '/assetone',
       image: '/images/network.png',
     },
     {
       title: 'Reporting for audit and planning',
       description: 'Asset information that supports budgeting, audit and replacement planning.',
-      href: '/asset-one-africa',
+      href: '/assetone',
       image: '/images/home-hero-port.png',
     },
   ],

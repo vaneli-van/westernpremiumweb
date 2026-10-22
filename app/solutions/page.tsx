@@ -133,7 +133,7 @@ function AssetGovernanceSection({ solution: s }: { solution: Solution }) {
           <ActionLink href={`/contact?solution=${s.id}`} variant="light" arrow>
             {s.enquireLabel}
           </ActionLink>
-          <ActionLink href="/asset-one-africa" variant="outline-light">
+          <ActionLink href="/assetone" variant="outline-light">
             {assetGovernance.secondaryLabel}
           </ActionLink>
         </div>

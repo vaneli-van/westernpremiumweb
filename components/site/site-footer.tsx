@@ -12,7 +12,7 @@ const moreLinks = [
 
 const helpfulLinks = [
   { label: 'Request a Quote', href: '/contact' },
-  { label: 'Asset One Africa', href: '/asset-one-africa' },
+  { label: 'AssetOne', href: '/assetone' },
   { label: 'Contact Us', href: '/contact' },
 ]
 

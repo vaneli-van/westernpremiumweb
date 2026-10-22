@@ -8,6 +8,9 @@ const nextConfig = {
       bodySizeLimit: '12mb',
     },
   },
+  async redirects() {
+    return [{ source: '/asset-one-africa', destination: '/assetone', permanent: true }]
+  },
   async headers() {
     return [
       {

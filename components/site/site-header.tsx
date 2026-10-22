@@ -28,9 +28,9 @@ const menus: { label: string; href: string; cards: MenuCard[] }[] = [
       { title: 'About us', description: 'An indigenous Ghanaian company, founded in Accra in 2015.', href: '/about' },
       { title: 'Experience', description: 'Requirements we have delivered for institutional buyers.', href: '/experience' },
       {
-        title: 'Asset One Africa',
-        description: 'Asset tracking and reporting through our sister company.',
-        href: '/asset-one-africa',
+        title: 'AssetOne',
+        description: 'Asset tracking and reporting through our partner company.',
+        href: '/assetone',
       },
     ],
   },

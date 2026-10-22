@@ -83,7 +83,7 @@ export function ServicesStrip() {
             <Link href={`/solutions#${s.id}`} className="group flex flex-col gap-2">
               <span className="text-[15px] text-primary">{s.title}</span>
               <span className="text-[13px] text-muted-foreground">
-                {s.affiliated ? 'Via Asset One Africa' : 'Western Premium'}
+                {s.affiliated ? 'Via AssetOne' : 'Western Premium'}
               </span>
               <span className="text-pretty text-[17px] leading-relaxed text-navy group-hover:text-primary">
                 {s.summary}
@@ -154,7 +154,7 @@ export function WhatWeDoSection() {
 const exploreCards = [
   { title: 'Sectors we serve', href: '/sectors', image: '/images/home-hero-port.png' },
   { title: 'Requirements we have delivered', href: '/experience', image: '/images/logistics.png' },
-  { title: 'Asset tracking with Asset One Africa', href: '/asset-one-africa', image: '/images/network.png' },
+  { title: 'Asset tracking with AssetOne', href: '/assetone', image: '/images/network.png' },
 ]
 
 export function ExploreMore() {

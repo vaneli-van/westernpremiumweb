@@ -8,11 +8,11 @@ import { assetOneAfrica, assetOneAfricaPage } from '@/content/company'
 export const metadata: Metadata = {
   title: assetOneAfricaPage.title,
   description: assetOneAfricaPage.metaDescription,
-  alternates: { canonical: '/asset-one-africa' },
+  alternates: { canonical: '/assetone' },
   openGraph: {
     title: `${assetOneAfricaPage.title} | Western Premium`,
     description: assetOneAfricaPage.metaDescription,
-    url: '/asset-one-africa',
+    url: '/assetone',
   },
 }
 

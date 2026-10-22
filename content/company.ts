@@ -72,10 +72,10 @@ export const suppliedBrands = {
 }
 
 export const assetOneAfrica = {
-  name: 'Asset One Africa',
-  relationship: 'sister company',
-  /** Official website address, to be supplied. Links are omitted while null. */
-  url: null as string | null,
+  name: 'AssetOne',
+  relationship: 'partner company',
+  /** Official website address. Links are omitted while null. */
+  url: 'https://www.assetone.net' as string | null,
 }
 
 export const navigation = [
@@ -84,7 +84,7 @@ export const navigation = [
   { label: 'Solutions', href: '/solutions' },
   { label: 'Sectors', href: '/sectors' },
   { label: 'Experience', href: '/experience' },
-  { label: 'Asset One Africa', href: '/asset-one-africa' },
+  { label: 'AssetOne', href: '/assetone' },
 ] as const
 
 /* ------------------------------------------------------------------ */
@@ -112,7 +112,7 @@ export const solutionsPage = {
   intro:
     'Four capabilities, one coordinated process. Each engagement is scoped around your specification, quantities, delivery location and timeline.',
   metaDescription:
-    'Enterprise IT infrastructure, technology operations support, industrial and MRO supply, and asset governance and reporting through sister company Asset One Africa.',
+    'Enterprise IT infrastructure, technology operations support, industrial and MRO supply, and asset governance and reporting through partner company AssetOne.',
   examplesHeading: 'Examples',
   processEyebrow: 'How we deliver',
   processTitle: 'One process across every capability.',
@@ -183,10 +183,10 @@ export const solutions: Solution[] = [
   {
     id: 'asset-governance',
     title: 'Asset governance and reporting',
-    summary: 'Asset tracking and reporting through our sister company, Asset One Africa.',
+    summary: 'Asset tracking and reporting through our partner company, AssetOne.',
     paragraphs: [
       'Organisations that manage physical assets need a dependable record of what they hold, where each asset is located and who is responsible for it. Asset tracking keeps that record current over time. Asset reporting turns it into information that supports budgeting, audit and replacement planning.',
-      'Asset tracking and reporting are provided through our sister company, Asset One Africa. Western Premium supplies the equipment, and Asset One Africa supports the organisation in tracking and reporting on its assets.',
+      'Asset tracking and reporting are provided through our partner company, AssetOne. Western Premium supplies the equipment, and AssetOne supports the organisation in tracking and reporting on its assets.',
     ],
     examples: [],
     enquireLabel: 'Discuss Your Asset Requirements',
@@ -195,7 +195,7 @@ export const solutions: Solution[] = [
 ]
 
 export const assetGovernance = {
-  eyebrow: 'Through our sister company',
+  eyebrow: 'Through our partner company',
   comparisonHeading: 'How the two companies work together',
   columns: [
     {
@@ -208,7 +208,7 @@ export const assetGovernance = {
       ],
     },
     {
-      name: 'Asset One Africa',
+      name: 'AssetOne',
       items: [
         'Asset tracking solutions',
         'Asset reporting solutions',
@@ -217,7 +217,7 @@ export const assetGovernance = {
     },
   ],
   scopeStatement: 'Requirements and delivery scope are discussed for each engagement.',
-  secondaryLabel: 'About Asset One Africa',
+  secondaryLabel: 'About AssetOne',
 }
 
 export const solutionOptions = [
@@ -789,21 +789,21 @@ export const aboutPage = {
 }
 
 /* ------------------------------------------------------------------ */
-/* Asset One Africa                                                   */
+/* AssetOne                                                           */
 /* ------------------------------------------------------------------ */
 
 export const assetOneAfricaPage = {
-  eyebrow: 'Sister company',
-  title: 'Asset One Africa',
+  eyebrow: 'Partner company',
+  title: 'AssetOne',
   heading: 'Complementary expertise across the asset lifecycle.',
   intro:
-    'Western Premium and its sister company, Asset One Africa, offer complementary capabilities for organisations managing physical assets. Western Premium focuses on equipment supply, procurement coordination and related support. Asset One Africa provides asset tracking and reporting solutions, with scope agreed around client requirements.',
+    'Western Premium and its partner company, AssetOne, offer complementary capabilities for organisations managing physical assets. Western Premium focuses on equipment supply, procurement coordination and related support. AssetOne provides asset tracking and reporting solutions, with scope agreed around client requirements.',
   metaDescription:
-    'Western Premium and its sister company, Asset One Africa, offer complementary capabilities: equipment supply and procurement coordination alongside asset tracking and reporting.',
+    'Western Premium and its partner company, AssetOne, offer complementary capabilities: equipment supply and procurement coordination alongside asset tracking and reporting.',
   supportingMessage:
     'Discuss your equipment requirements and asset-information needs with our team so we can identify the appropriate scope of support.',
   actionLabel: 'Discuss Your Asset Requirements',
-  externalLabel: 'Visit Asset One Africa',
+  externalLabel: 'Visit AssetOne',
 }
 
 /* ------------------------------------------------------------------ */

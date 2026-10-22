@@ -1,7 +1,7 @@
 import { assetGovernance } from '@/content/company'
 import { cn } from '@/lib/utils'
 
-/** Two-column comparison of what Western Premium and Asset One Africa each provide. */
+/** Two-column comparison of what Western Premium and AssetOne each provide. */
 export function CompanyComparison({ tone = 'light', headingLevel = 'h3' }: { tone?: 'light' | 'navy'; headingLevel?: 'h2' | 'h3' }) {
   const onNavy = tone === 'navy'
   const ColumnHeading = headingLevel === 'h2' ? 'h3' : 'h4'
