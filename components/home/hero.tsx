@@ -4,29 +4,23 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowDown, ChevronLeft, ChevronRight } from 'lucide-react'
-import { Container } from '@/components/site/page-primitives'
 import { cn } from '@/lib/utils'
 
 const slides = [
   {
-    image: '/images/home-hero-port.png',
+    image: '/images/home-datacentre.png',
     headline: ['We are Western Premium.', 'Reliable equipment. Lasting value.'],
-    subline: 'Sourcing and delivering the equipment that keeps institutions and businesses across Ghana running.',
+    subline: 'We source and deliver the equipment that keeps institutions and businesses across Ghana running.',
   },
   {
-    image: '/images/home-datacentre.png',
-    headline: ['Enterprise IT,', 'sourced to specification.'],
-    subline: 'End-user hardware, printers, networking, structured cabling and related power equipment.',
+    image: '/images/home-hero-port.png',
+    headline: ['Sourced to specification.', 'Delivered to site.'],
+    subline: 'One accountable process across sourcing markets in Ghana, the UK, the UAE and the US.',
   },
   {
     image: '/images/industrial.png',
-    headline: ['Industrial supply', 'for demanding operations.'],
+    headline: ['Industrial supply for', 'demanding operations.'],
     subline: 'Spares, electrical equipment and MRO essentials for mining, energy and industrial sites.',
-  },
-  {
-    image: '/images/logistics.png',
-    headline: ['Coordinated delivery,', 'from requirement to site.'],
-    subline: 'One accountable process across sourcing markets in Ghana, the UK, the UAE and the US.',
   },
 ]
 
@@ -42,7 +36,7 @@ export function Hero() {
     <section
       aria-roledescription="carousel"
       aria-label="Western Premium highlights"
-      className="on-navy relative isolate flex h-[min(48rem,calc(100svh-4.5rem))] min-h-[34rem] flex-col overflow-hidden bg-navy text-navy-foreground"
+      className="on-navy relative isolate overflow-hidden bg-navy text-navy-foreground"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
@@ -62,71 +56,67 @@ export function Hero() {
           )}
         />
       ))}
-      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-navy/60" />
+      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-navy/55" />
 
-      <div className="relative flex flex-1 items-center">
-        {slides.map((slide, i) => {
-          const isActive = i === active
-          const Heading = i === 0 ? 'h1' : 'h2'
-          return (
-            <div
-              key={slide.image}
-              role="group"
-              aria-roledescription="slide"
-              aria-label={`${i + 1} of ${slides.length}`}
-              aria-hidden={!isActive}
-              inert={!isActive}
-              className={cn(
-                'absolute inset-x-0 transition-all duration-700 motion-reduce:transition-none',
-                isActive ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-4 opacity-0',
-              )}
-            >
-              <Container className="flex flex-col items-center gap-6 text-center">
-                <Heading className="max-w-5xl text-balance font-sans text-4xl font-semibold leading-tight tracking-tight md:text-6xl lg:text-7xl">
+      <div className="mx-auto flex min-h-[30rem] max-w-6xl flex-col px-5 pt-14 pb-6 md:h-[27rem] md:min-h-0 md:px-8 md:pt-16">
+        <div className="grid flex-1">
+          {slides.map((slide, i) => {
+            const isActive = i === active
+            const Heading = i === 0 ? 'h1' : 'h2'
+            return (
+              <div
+                key={slide.image}
+                role="group"
+                aria-roledescription="slide"
+                aria-label={`${i + 1} of ${slides.length}`}
+                aria-hidden={!isActive}
+                inert={!isActive}
+                className={cn(
+                  'col-start-1 row-start-1 flex flex-col items-center gap-5 text-center transition-opacity duration-700 motion-reduce:transition-none',
+                  isActive ? 'opacity-100' : 'pointer-events-none opacity-0',
+                )}
+              >
+                <Heading className="text-balance text-3xl font-semibold leading-tight md:text-[2.875rem] md:leading-[1.15]">
                   {slide.headline.map((line) => (
                     <span key={line} className="block">
                       {line}
                     </span>
                   ))}
                 </Heading>
-                <p className="max-w-2xl text-pretty text-lg leading-relaxed text-navy-foreground/90 md:text-xl">
-                  {slide.subline}
-                </p>
-              </Container>
-            </div>
-          )
-        })}
-      </div>
+                <p className="max-w-2xl text-pretty text-base leading-relaxed md:text-[17px]">{slide.subline}</p>
+              </div>
+            )
+          })}
+        </div>
 
-      <Container className="flex flex-col gap-8 pb-10 md:pb-12">
-        <div className="relative flex items-center justify-center">
+        <div className="relative flex items-center justify-center pt-6">
           <Link href="#services" className="group flex items-center gap-5">
-            <span className="flex size-14 items-center justify-center rounded-full bg-primary text-primary-foreground transition-transform group-hover:translate-y-0.5 md:size-16">
-              <ArrowDown className="size-5" aria-hidden="true" />
+            <span className="flex size-12 items-center justify-center rounded-full bg-primary text-primary-foreground transition-transform group-hover:translate-y-0.5">
+              <ArrowDown className="size-4" aria-hidden="true" />
             </span>
-            <span className="text-sm font-semibold uppercase tracking-widest">Explore</span>
+            <span className="text-[13px] font-semibold uppercase tracking-[0.15em]">Explore</span>
           </Link>
-          <div className="absolute right-0 hidden gap-3 md:flex">
+          <div className="absolute right-0 hidden gap-2.5 md:flex">
             <button
               type="button"
               onClick={() => go(active - 1)}
               aria-label="Previous slide"
-              className="flex size-14 items-center justify-center rounded-full bg-navy-foreground text-navy transition-colors hover:bg-pale"
+              className="flex size-12 items-center justify-center rounded-full border border-navy/10 bg-navy-foreground text-primary transition-colors hover:bg-pale"
             >
-              <ChevronLeft className="size-5" aria-hidden="true" />
+              <ChevronLeft className="size-4" aria-hidden="true" />
             </button>
             <button
               type="button"
               onClick={() => go(active + 1)}
               aria-label="Next slide"
-              className="flex size-14 items-center justify-center rounded-full bg-navy-foreground text-navy transition-colors hover:bg-pale"
+              className="flex size-12 items-center justify-center rounded-full border border-navy/10 bg-navy-foreground text-primary transition-colors hover:bg-pale"
             >
-              <ChevronRight className="size-5" aria-hidden="true" />
+              <ChevronRight className="size-4" aria-hidden="true" />
             </button>
           </div>
         </div>
 
-        <div className="grid grid-cols-4 gap-3 md:gap-5">
+        <div className="grid grid-cols-3 gap-2.5 pt-4">
           {slides.map((slide, i) => (
             <button
               key={slide.image}
@@ -134,15 +124,14 @@ export function Hero() {
               onClick={() => go(i)}
               aria-label={`Show slide ${i + 1}: ${slide.headline.join(' ')}`}
               aria-current={i === active}
-              className="group py-3"
+              className="py-3"
             >
-              <span className="block h-1 overflow-hidden rounded-full bg-navy-foreground/35 transition-colors group-hover:bg-navy-foreground/55">
+              <span className="block h-1 overflow-hidden bg-navy-foreground/45">
                 <span
                   key={i === active ? `active-${active}` : 'idle'}
                   className={cn(
-                    'block h-full origin-left rounded-full bg-navy-foreground',
-                    i < active && 'scale-x-100',
-                    i > active && 'scale-x-0',
+                    'block h-full origin-left bg-primary',
+                    i !== active && 'scale-x-0',
                     i === active && 'animate-[hero-progress_linear_forwards] motion-reduce:animate-none',
                   )}
                   style={
@@ -156,7 +145,7 @@ export function Hero() {
             </button>
           ))}
         </div>
-      </Container>
+      </div>
     </section>
   )
 }

@@ -1,285 +1,293 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
-import { ActionLink } from '@/components/site/action-link'
-import { Container } from '@/components/site/page-primitives'
-import { AssignmentCard } from '@/components/sections/assignment-card'
-import {
-  assignments,
-  company,
-  organisationLabel,
-  sectors,
-  solutions,
-  sourcingNetwork,
-  suppliedBrands,
-  whatsappHref,
-} from '@/content/company'
+import { ArrowUpRight, ChevronRight } from 'lucide-react'
+import { assignmentClient, assignments, company, solutions, whatsappHref } from '@/content/company'
 import { cn } from '@/lib/utils'
+import { WhatWeDo } from './what-we-do'
 
-function SectionLabel({ children, light = false }: { children: React.ReactNode; light?: boolean }) {
-  return (
-    <p className={cn('text-xs font-medium uppercase tracking-widest', light ? 'text-pale' : 'text-primary')}>
-      {children}
-    </p>
-  )
+function Wrap({ className, children }: { className?: string; children: React.ReactNode }) {
+  return <div className={cn('mx-auto w-full max-w-6xl px-5 md:px-8', className)}>{children}</div>
 }
 
-function SectionHeading({ id, children, className }: { id?: string; children: React.ReactNode; className?: string }) {
+function Rule({ className }: { className?: string }) {
+  return <span aria-hidden="true" className={cn('block h-0.5 w-10 bg-primary', className)} />
+}
+
+function Heading({ id, children, className }: { id: string; children: React.ReactNode; className?: string }) {
   return (
-    <h2
-      id={id}
-      className={cn('text-balance font-sans text-4xl font-medium leading-tight tracking-tight md:text-6xl', className)}
-    >
+    <h2 id={id} className={cn('text-balance text-3xl font-semibold leading-tight text-navy', className)}>
       {children}
     </h2>
   )
 }
 
-export function Statement() {
+function Eyebrow({ children, light = false }: { children: React.ReactNode; light?: boolean }) {
   return (
-    <section aria-labelledby="statement-title">
-      <Container className="flex flex-col gap-12 py-24 md:py-36">
-        <SectionLabel>Who we are</SectionLabel>
-        <p
-          id="statement-title"
-          className="max-w-5xl text-pretty font-sans text-3xl font-normal leading-snug tracking-tight text-navy md:text-5xl"
-        >
-          An indigenous Ghanaian supply company. Since {company.founded}, we have sourced the equipment and essentials
-          that keep institutional and commercial operations running, <span className="text-muted-foreground">and coordinated delivery to the agreed scope.</span>
-        </p>
-        <ActionLink href="/about" variant="outline" arrow className="self-start">
-          About Western Premium
-        </ActionLink>
-      </Container>
-    </section>
+    <p className={cn('text-[13px] font-medium uppercase tracking-[0.12em]', light ? 'text-navy-foreground' : 'text-navy')}>
+      {children}
+    </p>
   )
 }
 
-export function FactsBand() {
-  const supplied = new Set(
-    assignments.filter((a) => a.status === 'Delivered' && a.organisationId).map((a) => a.organisationId),
-  ).size
-  const facts = [
-    { value: company.founded, label: `Founded in ${company.city}` },
-    { value: String(supplied), label: 'Organisations supplied' },
-    { value: String(sectors.length), label: 'Sectors served' },
-    { value: String(sourcingNetwork.length), label: 'Sourcing markets' },
-  ]
+function TextLink({ href, children, external = false }: { href: string; children: React.ReactNode; external?: boolean }) {
+  const cls =
+    'group inline-flex items-center gap-1 text-[13px] font-semibold uppercase tracking-[0.12em] text-primary hover:text-navy'
+  const Icon = external ? ArrowUpRight : ChevronRight
+  const inner = (
+    <>
+      {children}
+      <Icon className="size-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+    </>
+  )
+  return external ? (
+    <a href={href} target="_blank" rel="noopener noreferrer" className={cls}>
+      {inner}
+      <span className="sr-only">(opens in a new tab)</span>
+    </a>
+  ) : (
+    <Link href={href} className={cls}>
+      {inner}
+    </Link>
+  )
+}
+
+function PillLink({ href, children, light = false }: { href: string; children: React.ReactNode; light?: boolean }) {
   return (
-    <section aria-label="Company facts" className="on-navy bg-navy text-navy-foreground">
-      <Container>
-        <dl className="grid grid-cols-2 lg:grid-cols-4">
-          {facts.map((f) => (
-            <div
-              key={f.label}
-              className="flex flex-col-reverse gap-3 border-navy-foreground/15 py-12 odd:border-r lg:border-r lg:px-8 lg:first:pl-0 lg:last:border-r-0 [&:nth-child(-n+2)]:border-b lg:[&:nth-child(-n+2)]:border-b-0 px-5"
-            >
-              <dt className="text-sm text-pale">{f.label}</dt>
-              <dd className="font-sans text-5xl font-medium tracking-tight md:text-6xl">{f.value}</dd>
-            </div>
-          ))}
-        </dl>
-      </Container>
-    </section>
+    <Link
+      href={href}
+      className={cn(
+        'group inline-flex items-center gap-2 self-start rounded-full border px-8 py-3 text-[13px] font-medium uppercase tracking-[0.12em] transition-colors',
+        light
+          ? 'border-navy-foreground/60 text-navy-foreground hover:bg-navy-foreground hover:text-navy'
+          : 'border-primary text-primary hover:bg-primary hover:text-primary-foreground',
+      )}
+    >
+      {children}
+      <ChevronRight className="size-3.5" aria-hidden="true" />
+    </Link>
   )
 }
 
 export function ServicesStrip() {
   return (
-    <section id="services" aria-labelledby="services-title" className="scroll-mt-20 border-b border-border bg-pale/30">
+    <section id="services" aria-labelledby="services-title" className="scroll-mt-28 border-b border-border bg-pale/25">
       <h2 id="services-title" className="sr-only">
         Our services
       </h2>
-      <Container>
-        <ul className="grid md:grid-cols-2 lg:grid-cols-4">
-          {solutions.map((s) => (
-            <li
-              key={s.id}
-              className="border-b border-navy/15 last:border-b-0 md:odd:pr-8 md:even:border-l md:even:pl-8 md:[&:nth-child(-n+2)]:border-b lg:border-b-0 lg:border-l lg:px-8 lg:first:border-l-0 lg:first:pl-0 lg:last:pr-0 lg:[&:nth-child(-n+2)]:border-b-0"
-            >
-              <Link href={`/solutions#${s.id}`} className="group flex h-full flex-col gap-3 py-10">
-                <p className="text-base font-medium text-primary">{s.title}</p>
-                <p className="text-sm text-muted-foreground">
-                  {s.affiliated ? 'Via Asset One Africa' : 'Western Premium'}
-                </p>
-                <p className="text-pretty text-lg leading-relaxed text-navy transition-colors group-hover:text-primary">
-                  {s.summary}
-                </p>
-                <span className="mt-auto flex items-center gap-2 pt-2 text-sm font-medium text-navy">
-                  Learn more
-                  <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </Container>
+      <ul className="mx-auto grid max-w-7xl px-5 md:grid-cols-2 md:px-8 lg:grid-cols-4">
+        {solutions.map((s) => (
+          <li
+            key={s.id}
+            className="border-b border-border py-8 last:border-b-0 md:py-8 md:[&:nth-child(-n+2)]:border-b md:even:border-l md:even:pl-10 md:odd:pr-10 lg:border-b-0 lg:border-l lg:px-10 lg:first:border-l-0 lg:first:pl-0 lg:last:pr-0 lg:[&:nth-child(-n+2)]:border-b-0"
+          >
+            <Link href={`/solutions#${s.id}`} className="group flex flex-col gap-2">
+              <span className="text-[15px] text-primary">{s.title}</span>
+              <span className="text-[13px] text-muted-foreground">
+                {s.affiliated ? 'Via Asset One Africa' : 'Western Premium'}
+              </span>
+              <span className="line-clamp-3 text-pretty text-[17px] leading-relaxed text-navy group-hover:text-primary">
+                {s.summary}
+              </span>
+            </Link>
+          </li>
+        ))}
+      </ul>
     </section>
   )
 }
 
-export function SectorIndex() {
+export function WhoWeAre() {
   return (
-    <section aria-labelledby="sectors-title">
-      <Container className="flex flex-col gap-14 py-24 md:py-32">
-        <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
-          <div className="flex max-w-3xl flex-col gap-6">
-            <SectionLabel>Sectors</SectionLabel>
-            <SectionHeading id="sectors-title" className="text-navy">
-              Trusted by organisations with structured procurement.
-            </SectionHeading>
-          </div>
-          <ActionLink href="/sectors" variant="text" arrow className="shrink-0 text-base">
-            Explore sectors
-          </ActionLink>
+    <section aria-labelledby="who-title">
+      <Wrap className="flex flex-col gap-10 py-20">
+        <div className="flex flex-col gap-4">
+          <Rule />
+          <Heading id="who-title">Who we are</Heading>
         </div>
-        <ul className="flex flex-col border-b border-navy/15">
-          {sectors.map((sector) => (
-            <li key={sector.id} className="border-t border-navy/15">
-              <Link
-                href={`/sectors#${sector.id}`}
-                className="group grid gap-4 py-8 transition-colors md:grid-cols-12 md:gap-8 md:py-10"
-              >
-                <h3 className="text-balance font-sans text-2xl font-medium tracking-tight text-navy transition-colors group-hover:text-primary md:col-span-5 md:text-3xl">
-                  {sector.title}
-                </h3>
-                <div className="flex flex-col gap-3 md:col-span-6">
-                  <p className="text-pretty leading-relaxed text-muted-foreground">{sector.description}</p>
-                  <p className="text-sm font-medium text-navy">
-                    {sector.organisationIds.slice(0, 4).map(organisationLabel).join('  /  ')}
-                  </p>
-                </div>
-                <ArrowRight
-                  className="hidden size-6 justify-self-end text-navy transition-transform group-hover:translate-x-1 group-hover:text-primary md:col-span-1 md:block"
-                  aria-hidden="true"
-                />
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </Container>
+        <div className="grid gap-10 md:grid-cols-2 md:gap-9">
+          <div className="flex flex-col gap-7 text-[17px] font-light leading-relaxed text-muted-foreground">
+            <p className="text-pretty">
+              Organisations depend on the right equipment arriving as specified, when it is needed. Since{' '}
+              {company.founded}, Western Premium has worked within that cycle from {company.city}, sourcing IT
+              equipment, industrial spares and operational essentials for institutional and commercial buyers.
+            </p>
+            <p className="text-pretty">
+              Today, with a sourcing network across Ghana, the United Kingdom, the United Arab Emirates and the
+              United States, our promise is simple: reliable equipment and lasting value, delivered to the agreed
+              scope.
+            </p>
+            <PillLink href="/about">Discover more</PillLink>
+          </div>
+          <div className="relative aspect-video overflow-hidden bg-navy">
+            <Image
+              src="/images/logistics.png"
+              alt="Equipment consignments being prepared for delivery"
+              fill
+              sizes="(min-width: 768px) 560px, 100vw"
+              className="object-cover"
+            />
+          </div>
+        </div>
+      </Wrap>
     </section>
   )
 }
 
-export function AffiliationFeature() {
+export function WhatWeDoSection() {
   return (
-    <section aria-labelledby="aoa-title" className="on-navy relative isolate overflow-hidden bg-navy text-navy-foreground">
-      <Image src="/images/network.png" alt="" fill sizes="100vw" className="-z-20 object-cover" />
-      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-r from-navy via-navy/85 to-navy/30" />
-      <Container className="flex min-h-[36rem] flex-col justify-center gap-8 py-24">
-        <SectionLabel light>Sister company &middot; Asset One Africa</SectionLabel>
-        <SectionHeading id="aoa-title" className="max-w-2xl">
-          Supporting assets beyond procurement.
-        </SectionHeading>
-        <p className="max-w-xl text-pretty text-lg leading-relaxed text-pale">
-          Through Asset One Africa, clients can explore asset tracking and reporting, with the scope agreed around their
-          requirements.
+    <section aria-labelledby="what-title" className="relative isolate">
+      <div aria-hidden="true" className="absolute inset-x-0 bottom-0 -z-10 h-[55%] bg-navy" />
+      <Wrap className="flex flex-col gap-4 pb-24 pt-4">
+        <Rule />
+        <Heading id="what-title">What we do</Heading>
+        <p className="max-w-5xl text-pretty pb-12 pt-2 text-[17px] font-light leading-relaxed text-muted-foreground">
+          We source and deliver the equipment that institutional and commercial organisations rely on, from end-user
+          IT and networking to industrial spares and specialist items. Every requirement follows one coordinated
+          process, from specification to delivery.
         </p>
-        <ActionLink href="/asset-one-africa" variant="light" arrow className="self-start">
-          Explore Asset One Africa
-        </ActionLink>
-      </Container>
+        <WhatWeDo />
+      </Wrap>
     </section>
   )
+}
+
+const exploreCards = [
+  { title: 'Sectors we serve', href: '/sectors', image: '/images/home-hero-port.png' },
+  { title: 'Requirements we have delivered', href: '/experience', image: '/images/logistics.png' },
+  { title: 'Asset tracking with Asset One Africa', href: '/asset-one-africa', image: '/images/network.png' },
+]
+
+export function ExploreMore() {
+  return (
+    <section aria-labelledby="explore-title">
+      <Wrap className="flex flex-col gap-12 py-20">
+        <div className="flex flex-col gap-4">
+          <Rule />
+          <Heading id="explore-title">Explore more</Heading>
+        </div>
+        <ul className="grid gap-8 md:grid-cols-3">
+          {exploreCards.map((card) => (
+            <li key={card.href}>
+              <Link
+                href={card.href}
+                className="on-navy group relative isolate flex aspect-[7/10] flex-col justify-end overflow-hidden bg-navy p-10 text-navy-foreground"
+              >
+                <Image
+                  src={card.image}
+                  alt=""
+                  fill
+                  sizes="(min-width: 768px) 360px, 100vw"
+                  className="-z-20 object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-navy/85 via-navy/30 to-navy/10" />
+                <Rule className="mb-4" />
+                <h3 className="text-balance text-2xl font-semibold leading-snug">{card.title}</h3>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </Wrap>
+    </section>
+  )
+}
+
+const workImages: Record<string, string> = {
+  'wfp-ghana-tablets': '/images/hero-equipment.png',
+  'mdf-workplace': '/images/home-datacentre.png',
+  'unhrd-warehouse': '/images/industrial.png',
 }
 
 export function SelectedWork() {
-  const featured = assignments.filter((a) => a.status === 'Delivered' && a.organisationId).slice(0, 3)
+  const [lead, ...rest] = assignments.filter((a) => a.status === 'Delivered' && a.organisationId).slice(0, 3)
   return (
-    <section aria-labelledby="work-title">
-      <Container className="flex flex-col gap-14 py-24 md:py-32">
-        <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
-          <div className="flex max-w-3xl flex-col gap-6">
-            <SectionLabel>Selected work</SectionLabel>
-            <SectionHeading id="work-title" className="text-navy">
-              Requirements we have delivered.
-            </SectionHeading>
-          </div>
-          <ActionLink href="/experience" variant="text" arrow className="shrink-0 text-base">
-            View experience
-          </ActionLink>
+    <section aria-labelledby="work-title" className="bg-pale/25">
+      <Wrap className="flex flex-col gap-12 py-20">
+        <div className="flex flex-col items-center gap-4 text-center">
+          <Rule className="w-5" />
+          <Eyebrow>Selected work</Eyebrow>
+          <Heading id="work-title">Requirements we have delivered</Heading>
         </div>
-        <div className="grid gap-10 md:grid-cols-3">
-          {featured.map((a) => (
-            <AssignmentCard key={a.id} assignment={a} />
-          ))}
+        <div className="grid gap-8 md:grid-cols-2">
+          <article className="on-navy relative isolate flex min-h-[24rem] flex-col justify-end gap-4 overflow-hidden bg-navy p-10 text-navy-foreground">
+            <Image
+              src={workImages[lead.id]}
+              alt=""
+              fill
+              sizes="(min-width: 768px) 560px, 100vw"
+              className="-z-20 object-cover"
+            />
+            <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-navy/90 via-navy/50 to-navy/10" />
+            <Rule />
+            <h3 className="text-balance text-2xl font-semibold leading-snug">
+              {lead.title} for {assignmentClient(lead).replace(/^International/, 'an international')}
+            </h3>
+            <p className="max-w-md text-pretty text-[15px] font-light leading-relaxed">{lead.description[0]}</p>
+            <PillLink href="/experience" light>
+              Read more
+            </PillLink>
+          </article>
+          <ul className="flex flex-col gap-8">
+            {rest.map((a) => (
+              <li key={a.id} className="flex gap-7">
+                <div className="relative size-28 shrink-0 overflow-hidden sm:size-40">
+                  <Image src={workImages[a.id]} alt="" fill sizes="165px" className="object-cover" />
+                </div>
+                <div className="flex flex-col gap-2.5">
+                  <div className="flex items-center gap-5">
+                    <Rule className="w-5" />
+                    <Eyebrow>{a.sector}</Eyebrow>
+                  </div>
+                  <h3 className="text-pretty text-xl leading-snug text-navy">
+                    {a.title} for {assignmentClient(a)}
+                  </h3>
+                  <p className="line-clamp-2 text-[13px] font-light leading-relaxed text-muted-foreground">
+                    {a.description.join(' ')}
+                  </p>
+                  <div className="pt-1">
+                    <TextLink href="/experience">Read more</TextLink>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
-      </Container>
+      </Wrap>
     </section>
   )
 }
 
-export function BrandsRow() {
-  return (
-    <section aria-labelledby="brands-title" className="border-y border-border">
-      <Container className="flex flex-col gap-8 py-14 lg:flex-row lg:items-center lg:justify-between">
-        <div className="flex max-w-xs flex-col gap-2">
-          <h2 id="brands-title" className="text-sm font-medium text-navy">
-            {suppliedBrands.title}
-          </h2>
-          <p className="text-xs leading-relaxed text-muted-foreground">{suppliedBrands.note}</p>
-        </div>
-        <ul className="flex flex-wrap items-center gap-x-12 gap-y-4">
-          {suppliedBrands.names.map((name) => (
-            <li key={name} className="font-sans text-2xl font-semibold tracking-tight text-navy/50">
-              {name}
-            </li>
-          ))}
-        </ul>
-      </Container>
-    </section>
-  )
-}
+const engageCards = [
+  { title: 'Request a quotation', cta: 'Learn more', href: '/contact', image: '/images/hero-equipment.png', external: false },
+  { title: 'Message us on WhatsApp', cta: 'Chat now', href: whatsappHref, image: '/images/home-datacentre.png', external: true },
+]
 
-export function HomeCta() {
+export function Engage() {
   return (
-    <section aria-labelledby="cta-title">
-      <Container className="grid gap-12 py-24 md:py-36 lg:grid-cols-12">
-        <div className="flex flex-col gap-6 lg:col-span-8">
-          <SectionLabel>Start a requirement</SectionLabel>
-          <SectionHeading id="cta-title" className="text-navy md:text-7xl">
-            Tell us what you need to source.
-          </SectionHeading>
-          <div className="flex flex-col gap-3 pt-4 sm:flex-row">
-            <ActionLink href="/contact" arrow className="w-full sm:w-auto">
-              Request a Quote
-            </ActionLink>
-            <a
-              href={whatsappHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-sm border border-navy px-5 py-3 text-sm font-medium text-navy transition-colors hover:bg-navy hover:text-navy-foreground sm:w-auto"
-            >
-              Message us on WhatsApp
-            </a>
+    <section aria-labelledby="engage-title">
+      <Wrap className="grid gap-10 py-20 md:grid-cols-3 md:gap-8">
+        <div className="flex flex-col gap-5">
+          <div className="flex items-center gap-5">
+            <Rule />
+            <Eyebrow>Get in touch</Eyebrow>
           </div>
+          <Heading id="engage-title">Start your next requirement</Heading>
+          <p className="text-pretty text-[17px] font-light leading-relaxed text-muted-foreground">
+            Share your specification, quantities and delivery location, and we will prepare a clear quotation.
+          </p>
+          <TextLink href="/contact">Explore</TextLink>
         </div>
-        <dl className="flex flex-col gap-6 border-t border-navy/15 pt-8 lg:col-span-4 lg:self-end lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0">
-          <div className="flex flex-col gap-1">
-            <dt className="text-xs uppercase tracking-widest text-muted-foreground">Call</dt>
-            <dd>
-              <a href={company.phoneHref} className="text-lg font-medium text-navy hover:text-primary">
-                {company.phone}
-              </a>
-            </dd>
+        {engageCards.map((card) => (
+          <div key={card.title} className="relative flex aspect-[9/10] flex-col justify-end">
+            <Image src={card.image} alt="" fill sizes="(min-width: 768px) 360px, 100vw" className="object-cover" />
+            <div className="relative flex w-3/4 flex-col gap-6 bg-background px-3 pb-8 pt-12">
+              <h3 className="text-balance text-2xl font-semibold leading-snug text-navy">{card.title}</h3>
+              <TextLink href={card.href} external={card.external}>
+                {card.cta}
+              </TextLink>
+            </div>
           </div>
-          <div className="flex flex-col gap-1">
-            <dt className="text-xs uppercase tracking-widest text-muted-foreground">Email</dt>
-            <dd>
-              <a href={`mailto:${company.email}`} className="break-all text-lg font-medium text-navy hover:text-primary">
-                {company.email}
-              </a>
-            </dd>
-          </div>
-          <div className="flex flex-col gap-1">
-            <dt className="text-xs uppercase tracking-widest text-muted-foreground">Office</dt>
-            <dd className="text-lg font-medium text-navy">
-              {company.address.street}, {company.address.locality}, {company.address.city}
-            </dd>
-          </div>
-        </dl>
-      </Container>
+        ))}
+      </Wrap>
     </section>
   )
 }

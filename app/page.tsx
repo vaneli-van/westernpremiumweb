@@ -1,14 +1,12 @@
 import type { Metadata } from 'next'
 import { Hero } from '@/components/home/hero'
 import {
-  AffiliationFeature,
-  BrandsRow,
-  FactsBand,
-  HomeCta,
-  SectorIndex,
+  Engage,
+  ExploreMore,
   SelectedWork,
   ServicesStrip,
-  Statement,
+  WhatWeDoSection,
+  WhoWeAre,
 } from '@/components/home/home-sections'
 
 export const metadata: Metadata = {
@@ -21,13 +19,11 @@ export default function HomePage() {
     <>
       <Hero />
       <ServicesStrip />
-      <Statement />
-      <FactsBand />
-      <SectorIndex />
-      <AffiliationFeature />
+      <WhoWeAre />
+      <WhatWeDoSection />
+      <ExploreMore />
       <SelectedWork />
-      <BrandsRow />
-      <HomeCta />
+      <Engage />
     </>
   )
 }
