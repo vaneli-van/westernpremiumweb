@@ -76,7 +76,7 @@ export function Hero() {
                   isActive ? 'opacity-100' : 'pointer-events-none opacity-0',
                 )}
               >
-                <Heading className="text-balance text-3xl font-semibold leading-tight md:text-[2.875rem] md:leading-[1.15]">
+                <Heading className="text-balance font-serif text-3xl font-normal leading-tight md:text-[3.25rem] md:leading-[1.1]">
                   {slide.headline.map((line) => (
                     <span key={line} className="block">
                       {line}

@@ -31,6 +31,14 @@ export const company = {
   registrationNumber: null as string | null,
   /** Business hours. Renders as [BUSINESS_HOURS] while null. */
   businessHours: 'Monday to Friday, 08:00 to 17:00 GMT' as string | null,
+  /** Machine-readable opening hours for search engines. Keep in step with businessHours. */
+  openingHours: {
+    days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    opens: '08:00',
+    closes: '17:00',
+  },
+  /** Countries listed as served in search-engine data. */
+  areaServed: ['Ghana', 'West Africa'],
   /** WhatsApp number in international format, digits only, used for wa.me links. */
   whatsappNumber: '233552836232',
   whatsappMessage: 'Hello Western Premium, I would like to request a quotation.',
@@ -136,8 +144,7 @@ export const solutions: Solution[] = [
   {
     id: 'technology-operations',
     title: 'Technology operations support',
-    summary:
-      'Consumables, replacement parts, software licences and warranty coordination that support equipment throughout its working life.',
+    summary: 'Consumables, replacement parts, software licences and warranty coordination.',
     paragraphs: [
       'Equipment is only useful while it stays in service. We supply the consumables, replacement parts, accessories and software licences that support devices throughout their working life.',
       'For consumables such as toner, ink and labelling supplies, recurring supply arrangements can be agreed with you, based on the equipment in use and the quantities you expect to need.',
@@ -156,8 +163,7 @@ export const solutions: Solution[] = [
   {
     id: 'industrial-mro',
     title: 'Industrial and MRO supply',
-    summary:
-      'Maintenance, repair and operations (MRO) supplies, from industrial spares to specialist equipment sourced against client specifications.',
+    summary: 'Industrial spares, electrical components, PPE and specialist equipment sourced to specification.',
     paragraphs: [
       'Maintenance, repair and operations (MRO) supply covers the spares, components and essentials that keep sites, warehouses and facilities running. We source industrial spares, electrical components and switches, equipment batteries and personal protective equipment.',
       'Specialist equipment is sourced against the specification you provide, including the make, model, rating or standard where these are stated.',
@@ -327,6 +333,15 @@ export const quoteForm = {
     upload: 'We could not upload your attachment.',
     notConfigured: 'The quotation form is not yet connected to its email service.',
   },
+  fallback: {
+    heading: 'Send us your requirement',
+    body: 'Email your specification, quantities, delivery location and timeline to our sales team, or message us on WhatsApp. Attach any bill of quantities or tender documents to the email.',
+    emailAction: 'Email the sales team',
+    whatsappAction: 'Message us on WhatsApp',
+    phoneLabel: 'Or call',
+  },
+  attachmentUnavailable:
+    'To share a specification or bill of quantities, email it to the sales team and quote the reference number you receive after sending this form.',
   banners: {
     turnstile: 'Form backend not configured: Turnstile key missing',
     resend: 'Form backend not configured: Resend key missing',

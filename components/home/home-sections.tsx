@@ -15,7 +15,7 @@ function Rule({ className }: { className?: string }) {
 
 function Heading({ id, children, className }: { id: string; children: React.ReactNode; className?: string }) {
   return (
-    <h2 id={id} className={cn('text-balance text-3xl font-semibold leading-tight text-navy', className)}>
+    <h2 id={id} className={cn('text-balance font-serif text-3xl font-normal leading-tight text-navy md:text-4xl', className)}>
       {children}
     </h2>
   )
@@ -85,7 +85,7 @@ export function ServicesStrip() {
               <span className="text-[13px] text-muted-foreground">
                 {s.affiliated ? 'Via Asset One Africa' : 'Western Premium'}
               </span>
-              <span className="line-clamp-3 text-pretty text-[17px] leading-relaxed text-navy group-hover:text-primary">
+              <span className="text-pretty text-[17px] leading-relaxed text-navy group-hover:text-primary">
                 {s.summary}
               </span>
             </Link>
@@ -181,7 +181,7 @@ export function ExploreMore() {
                 />
                 <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-navy/85 via-navy/30 to-navy/10" />
                 <Rule className="mb-4" />
-                <h3 className="text-balance text-2xl font-semibold leading-snug">{card.title}</h3>
+                <h3 className="text-balance font-serif text-2xl font-normal leading-snug">{card.title}</h3>
               </Link>
             </li>
           ))}
@@ -218,7 +218,7 @@ export function SelectedWork() {
             />
             <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-navy/90 via-navy/50 to-navy/10" />
             <Rule />
-            <h3 className="text-balance text-2xl font-semibold leading-snug">
+            <h3 className="text-balance font-serif text-2xl font-normal leading-snug">
               {lead.title} for {assignmentClient(lead).replace(/^International/, 'an international')}
             </h3>
             <p className="max-w-md text-pretty text-[15px] font-light leading-relaxed">{lead.description[0]}</p>
@@ -237,7 +237,7 @@ export function SelectedWork() {
                     <Rule className="w-5" />
                     <Eyebrow>{a.sector}</Eyebrow>
                   </div>
-                  <h3 className="text-pretty text-xl leading-snug text-navy">
+                  <h3 className="text-pretty font-serif text-xl leading-snug text-navy">
                     {a.title} for {assignmentClient(a)}
                   </h3>
                   <p className="line-clamp-2 text-[13px] font-light leading-relaxed text-muted-foreground">
@@ -280,7 +280,7 @@ export function Engage() {
           <div key={card.title} className="relative flex aspect-[9/10] flex-col justify-end">
             <Image src={card.image} alt="" fill sizes="(min-width: 768px) 360px, 100vw" className="object-cover" />
             <div className="relative flex w-3/4 flex-col gap-6 bg-background px-3 pb-8 pt-12">
-              <h3 className="text-balance text-2xl font-semibold leading-snug text-navy">{card.title}</h3>
+              <h3 className="text-balance font-serif text-2xl font-normal leading-snug text-navy">{card.title}</h3>
               <TextLink href={card.href} external={card.external}>
                 {card.cta}
               </TextLink>
