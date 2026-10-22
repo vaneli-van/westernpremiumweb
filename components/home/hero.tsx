@@ -6,14 +6,15 @@ import Link from 'next/link'
 import { ArrowDown, ChevronLeft, ChevronRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-const slides = [
+const slides: { image: string; position?: string; headline: string[]; subline: string }[] = [
   {
     image: '/images/hero-office.jpg',
     headline: ['We are Western Premium.', 'Reliable equipment. Lasting value.'],
     subline: 'We source and deliver the equipment that keeps institutions and businesses across Ghana running.',
   },
   {
-    image: '/images/home-hero-port.png',
+    image: '/images/hero-port.jpg',
+    position: '50% 85%',
     headline: ['Sourced to specification.', 'Delivered to site.'],
     subline: 'One accountable process across sourcing markets in Ghana, the UK, the UAE and the US.',
   },
@@ -50,6 +51,7 @@ export function Hero() {
           fill
           priority={i === 0}
           sizes="100vw"
+          style={slide.position ? { objectPosition: slide.position } : undefined}
           className={cn(
             '-z-20 object-cover transition-opacity duration-1000 motion-reduce:transition-none',
             i === active ? 'opacity-100' : 'opacity-0',
