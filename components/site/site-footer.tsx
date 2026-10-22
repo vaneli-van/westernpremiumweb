@@ -1,72 +1,118 @@
 import Link from 'next/link'
-import { assetOneAfrica, company, navigation } from '@/content/company'
+import { ArrowUpRight, Mail, MessageCircle, Phone } from 'lucide-react'
+import { company, whatsappHref } from '@/content/company'
 import { Logo } from './logo'
-import { ProfileDownload } from './profile-download'
+
+const moreLinks = [
+  { label: 'About us', href: '/about' },
+  { label: 'Solutions', href: '/solutions' },
+  { label: 'Sectors', href: '/sectors' },
+  { label: 'Experience', href: '/experience' },
+]
+
+const helpfulLinks = [
+  { label: 'Request a Quote', href: '/contact' },
+  { label: 'Asset One Africa', href: '/asset-one-africa' },
+  { label: 'Contact Us', href: '/contact' },
+]
 
 export function SiteFooter() {
   const year = new Date().getFullYear()
+  const contactIcons = [
+    { label: `Call ${company.phone}`, href: company.phoneHref, icon: Phone, external: false },
+    { label: `Email ${company.email}`, href: `mailto:${company.email}`, icon: Mail, external: false },
+    { label: 'Message us on WhatsApp', href: whatsappHref, icon: MessageCircle, external: true },
+  ]
   return (
     <footer className="on-navy bg-navy text-navy-foreground">
-      <div className="mx-auto grid max-w-7xl gap-12 px-5 py-16 md:grid-cols-12 md:px-8">
-        <div className="flex flex-col gap-5 md:col-span-5">
-          <Logo tone="light" />
-          <p className="max-w-sm text-sm leading-relaxed text-pale/85">
-            An indigenous Ghanaian enterprise supply and infrastructure company, established in {company.founded}.
-            Enterprise IT, industrial supplies and practical support to keep your operations moving.
-          </p>
-          <ProfileDownload tone="light" />
-        </div>
+      <div className="mx-auto grid max-w-6xl gap-12 px-5 pb-12 pt-20 sm:grid-cols-2 md:px-8 lg:grid-cols-4">
+        <Link href="/" aria-label="Western Premium, home" className="self-start">
+          <Logo tone="light" className="h-9" />
+        </Link>
 
-        <nav aria-label="Footer" className="md:col-span-3">
-          <h2 className="mb-4 text-xs font-medium uppercase tracking-widest text-pale/70">Company</h2>
-          <ul className="flex flex-col gap-2.5 text-sm">
-            {navigation.map((item) => (
-              <li key={item.href}>
-                <Link href={item.href} className="text-navy-foreground/90 hover:text-pale hover:underline">
-                  {item.label}
+        <nav aria-labelledby="footer-more" className="flex flex-col gap-5">
+          <h2 id="footer-more" className="text-[15px]">
+            More Western Premium
+          </h2>
+          <ul className="flex flex-col gap-2 text-[15px] text-pale/75">
+            {moreLinks.map((l) => (
+              <li key={l.href}>
+                <Link href={l.href} className="hover:text-navy-foreground">
+                  {l.label}
                 </Link>
               </li>
             ))}
-            <li>
-              <Link href="/contact" className="text-navy-foreground/90 hover:text-pale hover:underline">
-                Request a Quote
-              </Link>
-            </li>
           </ul>
         </nav>
 
-        <div className="md:col-span-4">
-          <h2 className="mb-4 text-xs font-medium uppercase tracking-widest text-pale/70">Contact</h2>
-          <address className="flex flex-col gap-2.5 text-sm not-italic leading-relaxed">
-            <a href={company.phoneHref} className="hover:text-pale hover:underline">
-              {company.phone}
-            </a>
-            <a href={`mailto:${company.email}`} className="break-all hover:text-pale hover:underline">
-              {company.email}
-            </a>
-            <span className="text-pale/85">
-              {company.address.street}, {company.address.locality}
-              <br />
-              {company.address.city}, {company.address.country}
-            </span>
+        <nav aria-labelledby="footer-helpful" className="flex flex-col gap-5">
+          <h2 id="footer-helpful" className="text-[15px]">
+            Helpful Links
+          </h2>
+          <ul className="flex flex-col gap-2 text-[15px] text-pale/75">
+            {helpfulLinks.map((l) => (
+              <li key={l.label}>
+                <Link href={l.href} className="hover:text-navy-foreground">
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <div className="flex flex-col gap-5">
+          <h2 className="text-[15px]">Contact</h2>
+          <ul className="flex gap-3">
+            {contactIcons.map(({ label, href, icon: Icon, external }) => (
+              <li key={label}>
+                <a
+                  href={href}
+                  aria-label={label}
+                  {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                  className="flex size-8 items-center justify-center rounded-full border border-pale/60 transition-colors hover:bg-navy-foreground hover:text-navy"
+                >
+                  <Icon className="size-3.5" aria-hidden="true" />
+                </a>
+              </li>
+            ))}
+          </ul>
+          <address className="text-[15px] not-italic leading-relaxed text-pale/75">
+            {company.address.street}, {company.address.locality}
+            <br />
+            {company.address.city}, {company.address.country}
           </address>
-          <p className="mt-6 text-sm leading-relaxed text-pale/85">
-            Asset tracking and reporting through our {assetOneAfrica.relationship},{' '}
-            <Link href="/asset-one-africa" className="text-navy-foreground underline underline-offset-4 hover:text-pale">
-              {assetOneAfrica.name}
-            </Link>
-            .
-          </p>
         </div>
       </div>
-      <div className="border-t border-pale/15">
-        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-5 py-6 text-xs text-pale/75 md:flex-row md:items-center md:justify-between md:px-8">
+
+      <div className="mx-auto max-w-6xl px-5 md:px-8">
+        <div className="flex flex-col gap-4 border-t border-pale/25 py-10 text-[15px] text-pale/75 md:flex-row md:items-center md:justify-between">
           <p>
-            &copy; {year} {company.legalName}. All rights reserved.
+            &copy; {year} {company.legalName}
           </p>
-          <Link href="/privacy" className="hover:text-navy-foreground hover:underline">
-            Privacy notice
-          </Link>
+          <ul className="flex flex-wrap gap-x-4 gap-y-2">
+            <li>
+              <Link href="/privacy" className="hover:text-navy-foreground">
+                Privacy Notice
+              </Link>
+            </li>
+            <li>
+              <Link href="/contact" className="hover:text-navy-foreground">
+                Contact
+              </Link>
+            </li>
+            <li>
+              <a
+                href={whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 hover:text-navy-foreground"
+              >
+                WhatsApp
+                <ArrowUpRight className="size-3.5" aria-hidden="true" />
+                <span className="sr-only">(opens in a new tab)</span>
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </footer>

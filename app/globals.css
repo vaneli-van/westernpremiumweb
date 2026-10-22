@@ -3,7 +3,7 @@
 @import 'shadcn/tailwind.css';
 
 @theme inline {
-  --font-sans: var(--font-plex), 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-poppins), 'Poppins', ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-pt-serif), 'PT Serif Caption', ui-serif, Georgia, serif;
 
   --color-navy: var(--navy);
@@ -78,6 +78,15 @@
   }
   .on-navy :focus-visible {
     outline-color: var(--pale);
+  }
+}
+
+@keyframes hero-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
   }
 }
 

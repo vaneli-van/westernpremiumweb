@@ -16,7 +16,7 @@ export const company = {
     'To improve the lifecycle of our clients’ assets through the supply and service of quality IT and maintenance, repair and operations equipment and consumables.',
   phone: '+233 55 283 6232',
   phoneHref: 'tel:+233552836232',
-  email: 'sales@westernpremium.com.gh',
+  email: 'samuel@westernpremium.com.gh',
   address: {
     street: 'E86 Champagne Street',
     locality: 'East Airport',
@@ -24,21 +24,13 @@ export const company = {
     country: 'Ghana',
     countryCode: 'GH',
   },
-  websiteDomain: 'westernpremium.com.gh',
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://westernpremium.com.gh',
+  websiteDomain: 'westernpremium.co',
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://westernpremium.co',
 
   /** Registrar-General registration number. Renders as [REG_NUMBER] while null. */
   registrationNumber: null as string | null,
   /** Business hours. Renders as [BUSINESS_HOURS] while null. */
   businessHours: 'Monday to Friday, 08:00 to 17:00 GMT' as string | null,
-  /** Machine-readable opening hours for search engines. Keep in step with businessHours. */
-  openingHours: {
-    days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-    opens: '08:00',
-    closes: '17:00',
-  },
-  /** Countries listed as served in search-engine data. */
-  areaServed: ['Ghana', 'West Africa'],
   /** WhatsApp number in international format, digits only, used for wa.me links. */
   whatsappNumber: '233552836232',
   whatsappMessage: 'Hello Western Premium, I would like to request a quotation.',
@@ -48,7 +40,7 @@ export const company = {
    */
   quoteResponseTime: null as string | null,
   /** Inbox that receives quotation form notifications. */
-  enquiriesEmail: 'sales@westernpremium.com.gh',
+  enquiriesEmail: 'samuel@westernpremium.com.gh',
   /** Sender for form emails. The domain must be verified in Resend before emails will send. */
   formSender: 'Western Premium <enquiries@westernpremium.com.gh>',
 
@@ -56,9 +48,6 @@ export const company = {
   logoReversedSrc: '/brand/western-premium-logo-reversed.svg',
   /** Path to the company profile PDF in /public once supplied, e.g. '/documents/western-premium-company-profile.pdf'. */
   profilePdf: null as string | null,
-  /** Supporting line beneath the hero headline. */
-  heroSupportingLine:
-    'Supplying institutional buyers since 2015, from recurring consumables to cross-border equipment contracts delivered duty paid.',
 }
 
 export const whatsappHref = `https://wa.me/${company.whatsappNumber}?text=${encodeURIComponent(company.whatsappMessage)}`
@@ -338,15 +327,6 @@ export const quoteForm = {
     upload: 'We could not upload your attachment.',
     notConfigured: 'The quotation form is not yet connected to its email service.',
   },
-  fallback: {
-    heading: 'Send us your requirement',
-    body: 'Email your specification, quantities, delivery location and timeline to our sales team, or message us on WhatsApp. Attach any bill of quantities or tender documents to the email.',
-    emailAction: 'Email the sales team',
-    whatsappAction: 'Message us on WhatsApp',
-    phoneLabel: 'Or call',
-  },
-  attachmentUnavailable:
-    'To share a specification or bill of quantities, email it to the sales team and quote the reference number you receive after sending this form.',
   banners: {
     turnstile: 'Form backend not configured: Turnstile key missing',
     resend: 'Form backend not configured: Resend key missing',
@@ -776,7 +756,7 @@ export const leadership: Leader[] = [
 
 export const aboutPage = {
   title: 'About Western Premium',
-  statement: 'An indigenous Ghanaian company built around institutional procurement.',
+  statement: 'An indigenous Ghanaian company, built around institutional procurement.',
   metaDescription:
     'Western Premium Company Limited is an indigenous Ghanaian company in Accra supplying IT equipment, industrial spares and operational essentials to institutional and commercial buyers.',
   story: [

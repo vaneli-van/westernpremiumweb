@@ -11,16 +11,6 @@ export function getFormConfig(): FormConfig {
   }
 }
 
-/**
- * Configuration banners are shown on local and preview builds only. On the production
- * site a missing key never surfaces as an error message: the contact page falls back
- * to email and WhatsApp instead.
- */
-export function showConfigDiagnostics() {
-  if (process.env.VERCEL_ENV) return process.env.VERCEL_ENV !== 'production'
-  return process.env.NODE_ENV !== 'production'
-}
-
 /** Logs operational failures in development only. Never pass personal data or file contents here. */
 export function devLog(...args: unknown[]) {
   if (process.env.NODE_ENV !== 'production') console.error('[quote]', ...args)

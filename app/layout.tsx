@@ -1,17 +1,16 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
-import { IBM_Plex_Sans, PT_Serif_Caption } from 'next/font/google'
+import { Poppins, PT_Serif_Caption } from 'next/font/google'
 import { SiteHeader } from '@/components/site/site-header'
 import { SiteFooter } from '@/components/site/site-footer'
 import { OrganizationJsonLd } from '@/components/site/organization-json-ld'
-import { BreadcrumbJsonLd } from '@/components/site/breadcrumb-json-ld'
 import { company } from '@/content/company'
 import './globals.css'
 
-const plex = IBM_Plex_Sans({
+const poppins = Poppins({
   subsets: ['latin'],
-  weight: ['400', '500', '600'],
-  variable: '--font-plex',
+  weight: ['300', '400', '500', '600'],
+  variable: '--font-poppins',
   display: 'swap',
 })
 
@@ -34,6 +33,7 @@ export const metadata: Metadata = {
   },
   description: defaultDescription,
   applicationName: company.brandName,
+  generator: 'v0.app',
   openGraph: {
     type: 'website',
     siteName: company.brandName,
@@ -67,7 +67,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en-GB" className={`${plex.variable} ${ptSerif.variable} bg-background`}>
+    <html lang="en-GB" className={`${poppins.variable} ${ptSerif.variable} bg-background`}>
       <body className="font-sans antialiased">
         <a
           href="#main"
@@ -76,7 +76,6 @@ export default function RootLayout({
           Skip to content
         </a>
         <OrganizationJsonLd />
-        <BreadcrumbJsonLd />
         <SiteHeader />
         <main id="main">{children}</main>
         <SiteFooter />
