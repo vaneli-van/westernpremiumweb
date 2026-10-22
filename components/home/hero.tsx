@@ -14,7 +14,7 @@ const slides: { image: string; position?: string; headline: string[]; subline: s
   },
   {
     image: '/images/hero-port.jpg',
-    position: '50% 85%',
+    position: '50% 45%',
     headline: ['Sourced to specification.', 'Delivered to site.'],
     subline: 'One accountable process across sourcing markets in Ghana, the UK, the UAE and the US.',
   },
