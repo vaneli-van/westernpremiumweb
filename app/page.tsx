@@ -3,6 +3,7 @@ import { Hero } from '@/components/home/hero'
 import {
   Clients,
   Engage,
+  Reach,
   ExploreMore,
   SelectedWork,
   ServicesStrip,
@@ -24,6 +25,7 @@ export default function HomePage() {
       <WhatWeDoSection />
       <ExploreMore />
       <SelectedWork />
+      <Reach />
       <Clients />
       <Engage />
     </>

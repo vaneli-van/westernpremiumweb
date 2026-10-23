@@ -38,7 +38,7 @@ export const company = {
     closes: '17:00',
   },
   /** Countries listed as served in search-engine data. */
-  areaServed: ['Ghana', 'West Africa'],
+  areaServed: ['Ghana', 'Sierra Leone', 'Liberia', 'South Africa', 'Iraq'],
   /** WhatsApp number in international format, digits only, used for wa.me links. */
   whatsappNumber: '233592757921',
   whatsappMessage: 'Hello Western Premium, I would like to request a quotation.',
@@ -83,7 +83,7 @@ export const navigation = [
   { label: 'About', href: '/about' },
   { label: 'Solutions', href: '/solutions' },
   { label: 'Sectors', href: '/sectors' },
-  { label: 'Experience', href: '/experience' },
+  { label: 'Case studies', href: '/case-studies' },
   { label: 'AssetOne', href: '/assetone' },
 ] as const
 
@@ -501,7 +501,7 @@ export const clientsSection = {
   intro:
     'Development agencies, public bodies, mining and energy organisations, banks and commercial businesses that have bought equipment and supplies from Western Premium.',
   note: 'Names and logos describe our supply experience. They do not imply endorsement, an exclusive relationship or a current contract.',
-  cta: 'View selected experience',
+  cta: 'View case studies',
 }
 
 export const sectorsPage = {
@@ -515,7 +515,7 @@ export const sectorsPage = {
   organisationsHeading: 'Organisations supplied',
   disclaimer:
     'Organisation names are listed to describe our supply experience. Their inclusion does not imply endorsement, an exclusive relationship or a current contract.',
-  experienceLabel: 'View selected experience',
+  experienceLabel: 'View case studies',
 }
 
 export const sectors: {
@@ -599,20 +599,45 @@ export const sectors: {
 ]
 
 /* ------------------------------------------------------------------ */
+/* Reach                                                              */
+/* ------------------------------------------------------------------ */
+
+/** Countries where Western Premium has delivered to clients. */
+export const countriesDelivered = [
+  { name: 'Ghana', note: 'Head office in Accra' },
+  { name: 'Sierra Leone', note: 'Delivered' },
+  { name: 'Liberia', note: 'Delivered' },
+  { name: 'South Africa', note: 'Delivered' },
+  { name: 'Iraq', note: 'Contract awarded 2026' },
+]
+
+export const reachSection = {
+  eyebrow: 'Where we deliver',
+  title: 'Coordinated from Accra, delivered across borders',
+  body:
+    'Western Premium sources through established suppliers in Ghana, the United Kingdom, the United Arab Emirates and the United States, and manages freight, customs and delivery to the client’s site, inside Ghana and beyond it.',
+  statValue: '5',
+  statLabel: 'countries delivered to',
+  cta: 'View case studies',
+}
+
+/* ------------------------------------------------------------------ */
 /* Experience                                                         */
 /* ------------------------------------------------------------------ */
 
 export const experiencePage = {
-  eyebrow: 'Experience',
-  title: 'Selected Experience',
+  eyebrow: 'Case studies',
+  title: 'Case studies',
   intro:
-    'Selected organisations and assignments supplied by Western Premium. Listings describe the requirement and the agreed scope. They do not indicate endorsement, exclusive relationships or current contracts.',
+    'How Western Premium has met requirements for development agencies, public bodies and commercial organisations, from field technology in Ghana to specialist equipment for Iraq.',
   metaDescription:
-    'Selected organisations and assignments supplied by Western Premium across UN and development, mining and minerals, energy and power, and banking and commercial sectors.',
-  organisationsHeading: 'Organisations supplied',
+    'Case studies from Western Premium: equipment supply for UN agencies, mining-sector funds and commercial organisations in Ghana, Sierra Leone, Liberia, South Africa and Iraq.',
+  caseStudiesHeading: 'Featured case studies',
+  readMore: 'Read case study',
+  organisationsHeading: 'Organisations we work with',
   organisationsNote:
     'Listing an organisation does not imply endorsement, an exclusive relationship or a current contract.',
-  assignmentsHeading: 'Selected assignments',
+  assignmentsHeading: 'Further work',
   footnote: 'Further references are available on request as part of a formal tender or prequalification process.',
 }
 
@@ -633,6 +658,22 @@ export type Assignment = {
   description: string[]
   /** Grouped entries: one sentence per organisation, rendered as "{detail} for {organisation}." */
   parts?: { organisationId: OrganisationId; detail: string }[]
+  /** Present when the assignment has its own case study page at /case-studies/{slug}. */
+  caseStudy?: CaseStudy
+}
+
+export type CaseStudy = {
+  slug: string
+  country: string
+  image: string
+  imageAlt: string
+  /** One-line summary used on cards. */
+  summary: string
+  /** A single headline figure, e.g. '1,200 tablets'. */
+  highlight?: { value: string; label: string }
+  requirement: string
+  approach: string[]
+  outcome: string
 }
 
 export const assignments: Assignment[] = [
@@ -649,6 +690,21 @@ export const assignments: Assignment[] = [
       'Supply of 1,200 Samsung Galaxy Tab A9 tablets, with adapters, covers and screen protectors.',
       'The requirement was supplied across multiple orders.',
     ],
+    caseStudy: {
+      slug: 'wfp-ghana-field-technology',
+      country: 'Ghana',
+      image: '/images/wwd-field-tablets.jpg',
+      imageAlt: 'Rugged tablets laid out with chargers and screen protectors for a delivery count',
+      summary: 'Tablets and accessories for field teams, supplied to specification across several orders.',
+      highlight: { value: '1,200', label: 'tablets supplied' },
+      requirement:
+        'The World Food Programme in Ghana needed tablets for its field operations, each ready to deploy with the accessories that keep a device working in the field.',
+      approach: [
+        'We sourced Samsung Galaxy Tab A9 tablets to the agreed specification, together with adapters, protective covers and screen protectors for every unit.',
+        'The requirement was supplied across multiple orders, with each delivery matched to its order so quantities and documentation reconciled at every stage.',
+      ],
+      outcome: 'All 1,200 tablets and their accessories were delivered.',
+    },
   },
   {
     id: 'mdf-workplace',
@@ -662,6 +718,20 @@ export const assignments: Assignment[] = [
       'A single order for workplace equipment.',
       'The scope covered 20 HP Envy laptops, iPhones, Canon A3 copiers, shredders and toners.',
     ],
+    caseStudy: {
+      slug: 'mdf-workplace-equipment',
+      country: 'Ghana',
+      image: '/images/hero-equipment.png',
+      imageAlt: 'New laptops, tablets and boxed toner cartridges',
+      summary: 'A complete workplace equipment requirement, from laptops to copiers, fulfilled as one order.',
+      requirement:
+        'The Minerals Development Fund needed to equip its workplace with computing, office and document-handling equipment.',
+      approach: [
+        'We consolidated the requirement into a single order covering laptops, mobile phones, A3 copiers, shredders and toner.',
+        'One supplier and one order meant one point of accountability, and a simpler process for the client’s procurement and finance teams.',
+      ],
+      outcome: 'The full order was delivered.',
+    },
   },
   {
     id: 'unhrd-warehouse',
@@ -675,6 +745,20 @@ export const assignments: Assignment[] = [
       'Supply assignments covering warehouse and electrical equipment.',
       'The scope included a Jungheinrich electric forklift battery and ABB 400A changeover switches.',
     ],
+    caseStudy: {
+      slug: 'unhrd-warehouse-electrical',
+      country: 'Ghana',
+      image: '/images/wwd-warehouse-electrical.jpg',
+      imageAlt: 'Forklift traction battery and changeover switch enclosures on pallets in a warehouse',
+      summary: 'Warehouse and electrical equipment for a humanitarian response depot.',
+      requirement:
+        'UNHRD needed equipment to keep its humanitarian response depot operating, including materials-handling and electrical components.',
+      approach: [
+        'We supplied warehouse and electrical equipment across a series of assignments, sourced against the make, model and rating specified.',
+        'The scope included a Jungheinrich electric forklift battery and ABB 400A changeover switches.',
+      ],
+      outcome: 'Each assignment was delivered to the depot.',
+    },
   },
   {
     id: 'wfp-iraq-food-processing',
@@ -689,6 +773,20 @@ export const assignments: Assignment[] = [
       'Contract awarded in August 2026 for grading, dry-cleaning and vacuum machines for Najaf.',
       'The awarded scope includes delivery duty paid, freight, customs, assembly and commissioning.',
     ],
+    caseStudy: {
+      slug: 'wfp-iraq-food-processing',
+      country: 'Iraq',
+      image: '/images/hero-port.jpg',
+      imageAlt: 'Container port with ship-to-shore cranes at dusk',
+      summary: 'Specialist food-processing equipment for Najaf, delivered duty paid and commissioned on site.',
+      requirement:
+        'WFP Iraq required grading, dry-cleaning and vacuum machines for food processing in Najaf.',
+      approach: [
+        'The contract was awarded to Western Premium in August 2026 on delivery duty paid terms.',
+        'The awarded scope covers sourcing, international freight, customs clearance in Iraq, assembly and commissioning of the equipment on site.',
+      ],
+      outcome: 'Contract awarded in August 2026.',
+    },
   },
   {
     id: 'specialist-procurement',
@@ -807,9 +905,9 @@ export const aboutPage = {
   metaDescription:
     'Western Premium Company Limited is an indigenous Ghanaian company in Accra supplying IT equipment, industrial spares and operational essentials to institutional and commercial buyers.',
   story: [
-    `Western Premium Company Limited was founded in ${company.city} in ${company.founded}. It is an indigenous Ghanaian company that supplies IT equipment, industrial spares and operational essentials to organisations in Ghana and, where a contract requires it, beyond.`,
+    `Western Premium Company Limited was founded in ${company.city} in ${company.founded}. It is an indigenous Ghanaian company that supplies IT equipment, industrial spares and operational essentials to organisations in Ghana and across borders.`,
     'From the start, the company has supplied institutional buyers: development programmes, public bodies, energy and mining organisations, banks and commercial businesses. Their procurement processes call for accuracy against specification, complete documentation and delivery as agreed, and the company’s working methods have been shaped around those requirements.',
-    'Over time, the work has extended from recurring consumables to substantial equipment orders, specialist procurement and cross-border contracts. Items are sourced through a network of established suppliers in Ghana, the United Kingdom, the United Arab Emirates and the United States, coordinated from the office in Accra. Western Premium does not operate offices outside Ghana.',
+    'Over time, the work has extended from recurring consumables to substantial equipment orders, specialist procurement and cross-border contracts. Items are sourced through a network of established suppliers in Ghana, the United Kingdom, the United Arab Emirates and the United States, coordinated from the office in Accra. From there, the company has delivered to clients in Ghana, Sierra Leone, Liberia, South Africa and Iraq.',
     `The company’s purpose is ${company.purpose.charAt(0).toLowerCase()}${company.purpose.slice(1)}`,
   ],
   principlesEyebrow: 'Operating principles',

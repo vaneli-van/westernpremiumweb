@@ -9,7 +9,10 @@ const nextConfig = {
     },
   },
   async redirects() {
-    return [{ source: '/asset-one-africa', destination: '/assetone', permanent: true }]
+    return [
+      { source: '/asset-one-africa', destination: '/assetone', permanent: true },
+      { source: '/experience', destination: '/case-studies', permanent: true },
+    ]
   },
   async headers() {
     return [

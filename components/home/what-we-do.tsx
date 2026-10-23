@@ -14,7 +14,7 @@ const featured: Record<SolutionId, Featured[]> = {
     {
       title: 'Field technology for a humanitarian agency',
       description: '1,200 Samsung Galaxy Tab A9 tablets with adapters, covers and screen protectors.',
-      href: '/experience',
+      href: '/case-studies',
       image: '/images/wwd-field-tablets.jpg',
       alt: 'Rugged tablets laid out with chargers and screen protectors for a delivery count',
     },
@@ -46,7 +46,7 @@ const featured: Record<SolutionId, Featured[]> = {
     {
       title: 'Warehouse and electrical equipment',
       description: 'A Jungheinrich electric forklift battery and ABB 400A changeover switches.',
-      href: '/experience',
+      href: '/case-studies',
       image: '/images/wwd-warehouse-electrical.jpg',
       alt: 'Forklift traction battery and changeover switch enclosures on pallets in a warehouse',
     },

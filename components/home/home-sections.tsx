@@ -6,7 +6,9 @@ import {
   assignments,
   clientsSection,
   company,
+  countriesDelivered,
   organisations,
+  reachSection,
   solutions,
   whatsappHref,
   type Organisation,
@@ -162,7 +164,7 @@ export function WhatWeDoSection() {
 
 const exploreCards = [
   { title: 'Sectors we serve', href: '/sectors', image: '/images/home-hero-port.png' },
-  { title: 'Requirements we have delivered', href: '/experience', image: '/images/logistics.png' },
+  { title: 'Case studies', href: '/case-studies', image: '/images/logistics.png' },
   { title: 'Asset tracking with AssetOne', href: '/assetone', image: '/images/network.png' },
 ]
 
@@ -200,26 +202,20 @@ export function ExploreMore() {
   )
 }
 
-const workImages: Record<string, string> = {
-  'wfp-ghana-tablets': '/images/hero-equipment.png',
-  'mdf-workplace': '/images/home-datacentre.png',
-  'unhrd-warehouse': '/images/industrial.png',
-}
-
 export function SelectedWork() {
-  const [lead, ...rest] = assignments.filter((a) => a.status === 'Delivered' && a.organisationId).slice(0, 3)
+  const [lead, ...rest] = assignments.filter((a) => a.status === 'Delivered' && a.caseStudy).slice(0, 3)
   return (
     <section aria-labelledby="work-title" className="bg-pale/25">
       <Wrap className="flex flex-col gap-12 py-20">
         <div className="flex flex-col items-center gap-4 text-center">
           <Rule className="w-5" />
-          <Eyebrow>Selected work</Eyebrow>
+          <Eyebrow>Case studies</Eyebrow>
           <Heading id="work-title">Requirements we have delivered</Heading>
         </div>
         <div className="grid gap-8 md:grid-cols-2">
           <article className="on-navy relative isolate flex min-h-[24rem] flex-col justify-end gap-4 overflow-hidden bg-navy p-10 text-navy-foreground">
             <Image
-              src={workImages[lead.id]}
+              src={lead.caseStudy!.image}
               alt=""
               fill
               sizes="(min-width: 768px) 560px, 100vw"
@@ -230,8 +226,8 @@ export function SelectedWork() {
             <h3 className="text-balance font-serif text-2xl font-normal leading-snug">
               {lead.title} for {assignmentClient(lead).replace(/^International/, 'an international')}
             </h3>
-            <p className="max-w-md text-pretty text-[15px] font-light leading-relaxed">{lead.description[0]}</p>
-            <PillLink href="/experience" light>
+            <p className="max-w-md text-pretty text-[15px] font-light leading-relaxed">{lead.caseStudy!.summary}</p>
+            <PillLink href={`/case-studies/${lead.caseStudy!.slug}`} light>
               Read more
             </PillLink>
           </article>
@@ -239,23 +235,59 @@ export function SelectedWork() {
             {rest.map((a) => (
               <li key={a.id} className="flex gap-7">
                 <div className="relative size-28 shrink-0 overflow-hidden sm:size-40">
-                  <Image src={workImages[a.id]} alt="" fill sizes="165px" className="object-cover" />
+                  <Image src={a.caseStudy!.image} alt="" fill sizes="165px" className="object-cover" />
                 </div>
                 <div className="flex flex-col gap-2.5">
                   <div className="flex items-center gap-5">
                     <Rule className="w-5" />
-                    <Eyebrow>{a.sector}</Eyebrow>
+                    <Eyebrow>{`${a.sector} · ${a.caseStudy!.country}`}</Eyebrow>
                   </div>
                   <h3 className="text-pretty font-serif text-xl leading-snug text-navy">
                     {a.title} for {assignmentClient(a)}
                   </h3>
                   <p className="line-clamp-2 text-[13px] font-light leading-relaxed text-muted-foreground">
-                    {a.description.join(' ')}
+                    {a.caseStudy!.summary}
                   </p>
                   <div className="pt-1">
-                    <TextLink href="/experience">Read more</TextLink>
+                    <TextLink href={`/case-studies/${a.caseStudy!.slug}`}>Read more</TextLink>
                   </div>
                 </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Wrap>
+    </section>
+  )
+}
+
+export function Reach() {
+  return (
+    <section aria-labelledby="reach-title" className="on-navy bg-navy text-navy-foreground">
+      <Wrap className="grid gap-12 py-20 md:grid-cols-12 md:gap-8">
+        <div className="flex flex-col gap-5 md:col-span-5">
+          <Rule />
+          <Eyebrow light>{reachSection.eyebrow}</Eyebrow>
+          <h2 id="reach-title" className="text-balance font-serif text-3xl font-normal leading-tight md:text-4xl">
+            {reachSection.title}
+          </h2>
+          <p className="text-pretty text-[15px] font-light leading-relaxed text-pale/90">{reachSection.body}</p>
+          <div className="pt-2">
+            <PillLink href="/case-studies" light>
+              {reachSection.cta}
+            </PillLink>
+          </div>
+        </div>
+        <div className="flex flex-col gap-8 md:col-span-6 md:col-start-7">
+          <div className="flex items-baseline gap-4 border-b border-pale/25 pb-6">
+            <span className="font-serif text-6xl leading-none md:text-7xl">{reachSection.statValue}</span>
+            <span className="text-[13px] uppercase tracking-[0.12em] text-pale/80">{reachSection.statLabel}</span>
+          </div>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 sm:gap-x-8">
+            {countriesDelivered.map((c) => (
+              <li key={c.name} className="flex flex-col gap-1 border-b border-pale/20 py-4">
+                <span className="font-serif text-xl">{c.name}</span>
+                <span className="text-[12px] uppercase tracking-[0.12em] text-pale/70">{c.note}</span>
               </li>
             ))}
           </ul>
@@ -302,7 +334,7 @@ export function Clients() {
           <p className="max-w-2xl text-pretty text-[13px] font-light leading-relaxed text-muted-foreground">
             {clientsSection.note}
           </p>
-          <TextLink href="/experience">{clientsSection.cta}</TextLink>
+          <TextLink href="/case-studies">{clientsSection.cta}</TextLink>
         </div>
       </Wrap>
     </section>

@@ -26,7 +26,7 @@ const menus: { label: string; href: string; cards: MenuCard[] }[] = [
     href: '/about',
     cards: [
       { title: 'About us', description: 'An indigenous Ghanaian company, founded in Accra in 2015.', href: '/about' },
-      { title: 'Experience', description: 'Requirements we have delivered for institutional buyers.', href: '/experience' },
+      { title: 'Case studies', description: 'Work delivered for institutional buyers in five countries.', href: '/case-studies' },
       {
         title: 'AssetOne',
         description: 'Asset tracking and reporting through our partner company.',

@@ -7,7 +7,7 @@ const moreLinks = [
   { label: 'About us', href: '/about' },
   { label: 'Solutions', href: '/solutions' },
   { label: 'Sectors', href: '/sectors' },
-  { label: 'Experience', href: '/experience' },
+  { label: 'Case studies', href: '/case-studies' },
 ]
 
 const helpfulLinks = [

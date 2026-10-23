@@ -81,7 +81,7 @@ export default function SectorsPage() {
       <section className="border-t border-border">
         <Container className="flex flex-col items-start gap-6 py-12">
           <p className="max-w-3xl text-pretty text-sm leading-relaxed text-muted-foreground">{sectorsPage.disclaimer}</p>
-          <ActionLink href="/experience" variant="outline" arrow>
+          <ActionLink href="/case-studies" variant="outline" arrow>
             {sectorsPage.experienceLabel}
           </ActionLink>
         </Container>
