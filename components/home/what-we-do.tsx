@@ -7,7 +7,7 @@ import { ChevronRight } from 'lucide-react'
 import { solutions, type SolutionId } from '@/content/company'
 import { cn } from '@/lib/utils'
 
-type Featured = { title: string; description: string; href: string; image: string }
+type Featured = { title: string; description: string; href: string; image: string; alt: string }
 
 const featured: Record<SolutionId, Featured[]> = {
   'enterprise-it': [
@@ -15,13 +15,15 @@ const featured: Record<SolutionId, Featured[]> = {
       title: 'Field technology for a humanitarian agency',
       description: '1,200 Samsung Galaxy Tab A9 tablets with adapters, covers and screen protectors.',
       href: '/experience',
-      image: '/images/hero-equipment.png',
+      image: '/images/wwd-field-tablets.jpg',
+      alt: 'Rugged tablets laid out with chargers and screen protectors for a delivery count',
     },
     {
       title: 'Networking and structured cabling',
       description: 'Networking equipment, cabling and related power equipment, installed where agreed.',
       href: '/solutions#enterprise-it',
-      image: '/images/network.png',
+      image: '/images/wwd-network-cabinet.jpg',
+      alt: 'Network cabinet with neatly dressed blue patch cables and overhead cable tray',
     },
   ],
   'technology-operations': [
@@ -29,13 +31,15 @@ const featured: Record<SolutionId, Featured[]> = {
       title: 'Consumables and replacement parts',
       description: 'Toner, ink, labelling supplies and parts that keep equipment in service.',
       href: '/solutions#technology-operations',
-      image: '/images/hero-equipment.png',
+      image: '/images/wwd-consumables-store.jpg',
+      alt: 'Store room shelving stocked with toner, ink and label supplies',
     },
     {
       title: 'Warranty and after-sales coordination',
       description: 'We coordinate the applicable manufacturer process with the supplier.',
       href: '/solutions#technology-operations',
-      image: '/images/home-datacentre.png',
+      image: '/images/wwd-laptop-service.jpg',
+      alt: 'Technician fitting a replacement drive into an opened business laptop',
     },
   ],
   'industrial-mro': [
@@ -43,13 +47,15 @@ const featured: Record<SolutionId, Featured[]> = {
       title: 'Warehouse and electrical equipment',
       description: 'A Jungheinrich electric forklift battery and ABB 400A changeover switches.',
       href: '/experience',
-      image: '/images/industrial.png',
+      image: '/images/wwd-warehouse-electrical.jpg',
+      alt: 'Forklift traction battery and changeover switch enclosures on pallets in a warehouse',
     },
     {
       title: 'Specialist equipment to specification',
       description: 'Sourced against the make, model, rating or standard you provide.',
       href: '/solutions#industrial-mro',
-      image: '/images/logistics.png',
+      image: '/images/wwd-specialist-pump.jpg',
+      alt: 'Crated industrial pump being measured with a caliper against its specification',
     },
   ],
   'asset-governance': [
@@ -57,13 +63,15 @@ const featured: Record<SolutionId, Featured[]> = {
       title: 'Asset tracking with AssetOne',
       description: 'A dependable record of what you hold, where it is, and who is responsible.',
       href: '/assetone',
-      image: '/images/network.png',
+      image: '/images/wwd-asset-tagging.jpg',
+      alt: 'Handheld scanner reading an asset tag on a desktop computer',
     },
     {
       title: 'Reporting for audit and planning',
       description: 'Asset information that supports budgeting, audit and replacement planning.',
       href: '/assetone',
-      image: '/images/home-hero-port.png',
+      image: '/images/wwd-asset-check.jpg',
+      alt: 'Asset verification check against tagged laptops and desktops in a store room',
     },
   ],
 }
@@ -137,7 +145,7 @@ export function WhatWeDo() {
             {featured[s.id].map((f) => (
               <li key={f.title} className="flex flex-col gap-5 sm:flex-row sm:gap-7">
                 <div className="relative aspect-[3/2] w-full shrink-0 overflow-hidden sm:w-[16.4rem]">
-                  <Image src={f.image} alt="" fill sizes="(min-width: 640px) 262px, 100vw" className="object-cover" />
+                  <Image src={f.image} alt={f.alt} fill sizes="(min-width: 640px) 262px, 100vw" className="object-cover" />
                 </div>
                 <div className="flex flex-col gap-3 pt-1">
                   <h4 className="text-lg font-semibold leading-snug text-navy">{f.title}</h4>

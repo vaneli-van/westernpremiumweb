@@ -1,0 +1,28 @@
+From db26177240676168ee901f3f0a9675e245ddb0af Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Thu, 22 Oct 2026 23:30:58 +0000
+Subject: [PATCH] Hero slide 2: frame the port on the sea and cranes so the
+ headline sits on calm water
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01TPYrGyVZitFsXfz5rueKnp
+---
+ components/home/hero.tsx | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/components/home/hero.tsx b/components/home/hero.tsx
+index d9ba9b6..69823bf 100644
+--- a/components/home/hero.tsx
++++ b/components/home/hero.tsx
+@@ -14,7 +14,7 @@ const slides: { image: string; position?: string; headline: string[]; subline: s
+   },
+   {
+     image: '/images/hero-port.jpg',
+-    position: '50% 85%',
++    position: '50% 45%',
+     headline: ['Sourced to specification.', 'Delivered to site.'],
+     subline: 'One accountable process across sourcing markets in Ghana, the UK, the UAE and the US.',
+   },
+-- 
+2.43.0
+
