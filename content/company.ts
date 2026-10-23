@@ -676,6 +676,8 @@ export type CaseStudy = {
   country: string
   image: string
   imageAlt: string
+  /** Optional image for the large homepage card, when it should differ from the case study photo. */
+  cardImage?: string
   /** One-line summary used on cards. */
   summary: string
   /** A single headline figure, e.g. '1,200 tablets'. */
@@ -703,6 +705,7 @@ export const assignments: Assignment[] = [
       slug: 'wfp-ghana-field-technology',
       country: 'Ghana',
       image: '/images/wwd-field-tablets.jpg',
+      cardImage: '/images/home-ambassador-substation.jpg',
       imageAlt: 'Rugged tablets laid out with chargers and screen protectors for a delivery count',
       summary: 'Tablets and accessories for field teams, supplied to specification across several orders.',
       highlight: { value: '1,200', label: 'tablets supplied' },

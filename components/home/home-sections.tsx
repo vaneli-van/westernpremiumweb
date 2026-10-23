@@ -216,11 +216,11 @@ export function SelectedWork() {
         <div className="grid gap-8 md:grid-cols-2">
           <article className="on-navy relative isolate flex min-h-[24rem] flex-col justify-end gap-4 overflow-hidden bg-navy p-10 text-navy-foreground">
             <Image
-              src={lead.caseStudy!.image}
+              src={lead.caseStudy!.cardImage ?? lead.caseStudy!.image}
               alt=""
               fill
               sizes="(min-width: 768px) 560px, 100vw"
-              className="-z-20 object-cover"
+              className={`-z-20 object-cover ${lead.caseStudy!.cardImage ? 'object-[80%_center]' : ''}`}
             />
             <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-navy/90 via-navy/50 to-navy/10" />
             <Rule />
