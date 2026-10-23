@@ -195,6 +195,11 @@ export const solutions: Solution[] = [
   },
 ]
 
+/** Dedicated page for a capability. Asset governance lives on the AssetOne page. */
+export function solutionHref(id: SolutionId) {
+  return id === 'asset-governance' ? '/assetone' : `/solutions/${id}`
+}
+
 export const assetGovernance = {
   eyebrow: 'Through our partner company',
   comparisonHeading: 'How the two companies work together',

@@ -5,7 +5,7 @@ import { CompanyComparison } from '@/components/sections/company-comparison'
 import { ProcessSteps } from '@/components/sections/process-steps'
 import { ActionLink } from '@/components/site/action-link'
 import { ClosingCta, Container, Eyebrow, PageHeader } from '@/components/site/page-primitives'
-import { assetGovernance, type Solution, solutions, solutionsPage } from '@/content/company'
+import { assetGovernance, type Solution, solutionHref, solutions, solutionsPage } from '@/content/company'
 import { cn } from '@/lib/utils'
 
 export const metadata: Metadata = {
@@ -94,6 +94,9 @@ function SolutionSection({ solution: s, index }: { solution: Solution; index: nu
               {s.enquireLabel}
             </ActionLink>
           </div>
+          <Link href={solutionHref(s.id)} className="w-fit text-sm font-semibold text-primary hover:text-navy">
+            {`More on ${s.title.toLowerCase()}`}
+          </Link>
         </div>
         {s.image && (
           <div className={cn('lg:col-span-5', flipped ? 'lg:order-1 lg:col-start-1' : 'lg:col-start-8')}>

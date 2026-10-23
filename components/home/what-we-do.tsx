@@ -21,7 +21,7 @@ const featured: Record<SolutionId, Featured[]> = {
     {
       title: 'Networking and structured cabling',
       description: 'Networking equipment, cabling and related power equipment, installed where agreed.',
-      href: '/solutions#enterprise-it',
+      href: '/solutions/enterprise-it',
       image: '/images/wwd-network-cabinet.jpg',
       alt: 'Network cabinet with neatly dressed blue patch cables and overhead cable tray',
     },
@@ -30,14 +30,14 @@ const featured: Record<SolutionId, Featured[]> = {
     {
       title: 'Consumables and replacement parts',
       description: 'Toner, ink, labelling supplies and parts that keep equipment in service.',
-      href: '/solutions#technology-operations',
+      href: '/solutions/technology-operations',
       image: '/images/wwd-consumables-store.jpg',
       alt: 'Store room shelving stocked with toner, ink and label supplies',
     },
     {
       title: 'Warranty and after-sales coordination',
       description: 'We coordinate the applicable manufacturer process with the supplier.',
-      href: '/solutions#technology-operations',
+      href: '/solutions/technology-operations',
       image: '/images/wwd-laptop-service.jpg',
       alt: 'Technician fitting a replacement drive into an opened business laptop',
     },
@@ -53,7 +53,7 @@ const featured: Record<SolutionId, Featured[]> = {
     {
       title: 'Specialist equipment to specification',
       description: 'Sourced against the make, model, rating or standard you provide.',
-      href: '/solutions#industrial-mro',
+      href: '/solutions/industrial-mro',
       image: '/images/wwd-specialist-pump.jpg',
       alt: 'Crated industrial pump being measured with a caliper against its specification',
     },

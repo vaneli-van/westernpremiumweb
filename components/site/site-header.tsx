@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { ArrowUpRight, ChevronDown, ChevronRight, Menu, X } from 'lucide-react'
-import { company, sectors, solutions, whatsappHref } from '@/content/company'
+import { company, sectors, solutionHref, solutions, whatsappHref } from '@/content/company'
 import { cn } from '@/lib/utils'
 import { Logo } from './logo'
 
@@ -14,7 +14,7 @@ const menus: { label: string; href: string; cards: MenuCard[] }[] = [
   {
     label: 'Solutions',
     href: '/solutions',
-    cards: solutions.map((s) => ({ title: s.title, description: s.summary, href: `/solutions#${s.id}` })),
+    cards: solutions.map((s) => ({ title: s.title, description: s.summary, href: solutionHref(s.id) })),
   },
   {
     label: 'Sectors',

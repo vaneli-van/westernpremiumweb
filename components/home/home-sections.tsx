@@ -9,6 +9,7 @@ import {
   countriesDelivered,
   organisations,
   reachSection,
+  solutionHref,
   solutions,
   whatsappHref,
   type Organisation,
@@ -91,7 +92,7 @@ export function ServicesStrip() {
             key={s.id}
             className="border-b border-border py-8 last:border-b-0 md:py-8 md:[&:nth-child(-n+2)]:border-b md:even:border-l md:even:pl-10 md:odd:pr-10 lg:border-b-0 lg:border-l lg:px-10 lg:first:border-l-0 lg:first:pl-0 lg:last:pr-0 lg:[&:nth-child(-n+2)]:border-b-0"
           >
-            <Link href={`/solutions#${s.id}`} className="group flex flex-col gap-2">
+            <Link href={solutionHref(s.id)} className="group flex flex-col gap-2">
               <span className="text-[15px] text-primary">{s.title}</span>
               <span className="text-[13px] text-muted-foreground">
                 {s.affiliated ? 'Via AssetOne' : 'Western Premium'}
