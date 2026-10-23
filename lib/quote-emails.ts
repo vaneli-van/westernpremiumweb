@@ -39,10 +39,10 @@ const tableText = (rows: Row[]) => rows.map(([k, v]) => `${k}: ${v}`).join('\n')
 
 const addressLine = `${company.address.street}, ${company.address.locality}, ${company.address.city}, ${company.address.country}`
 
-export function internalEmail(data: QuoteValues, reference: string, attachment: { name: string; url: string } | null) {
+export function internalEmail(data: QuoteValues, reference: string, attachment: { name: string } | null) {
   const rows: Row[] = [['Reference', reference], ...summaryRows(data, attachment?.name ?? null)]
   const attachmentHtml = attachment
-    ? `<p style="font-family:Arial,sans-serif;font-size:14px"><a href="${escapeHtml(attachment.url)}">${escapeHtml(attachment.name)}</a><br><span style="color:#475569">${escapeHtml(t.attachmentNote)}</span></p>`
+    ? `<p style="font-family:Arial,sans-serif;font-size:14px">${escapeHtml(attachment.name)}<br><span style="color:#475569">${escapeHtml(t.attachmentNote)}</span></p>`
     : ''
 
   return {
@@ -52,7 +52,7 @@ export function internalEmail(data: QuoteValues, reference: string, attachment: 
     subject: `${t.internalSubject}: ${data.organisation} (${reference})`,
     html: `<h2 style="font-family:Arial,sans-serif">${escapeHtml(t.internalHeading)}</h2>${tableHtml(rows)}<h3 style="font-family:Arial,sans-serif">${escapeHtml(labels.requirement)}</h3><p style="font-family:Arial,sans-serif;font-size:14px;white-space:pre-wrap">${escapeHtml(data.requirement)}</p>${attachmentHtml}`,
     text: `${t.internalHeading}\n\nReference: ${reference}\n${tableText(rows.slice(1))}\n\n${labels.requirement}:\n${data.requirement}${
-      attachment ? `\n\n${attachment.name}: ${attachment.url}\n${t.attachmentNote}` : ''
+      attachment ? `\n\n${attachment.name}\n${t.attachmentNote}` : ''
     }`,
   }
 }

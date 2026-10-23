@@ -7,7 +7,8 @@ export function getFormConfig(): FormConfig {
   return {
     turnstile: Boolean(process.env.TURNSTILE_SECRET_KEY && process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY),
     resend: Boolean(process.env.RESEND_API_KEY),
-    blob: Boolean(process.env.BLOB_READ_WRITE_TOKEN),
+    // Attachments are sent with the internal email, so no storage service is needed.
+    blob: true,
   }
 }
 
@@ -17,7 +18,6 @@ export function getFormConfig(): FormConfig {
  * to email and WhatsApp instead.
  */
 export function showConfigDiagnostics() {
-  if (process.env.VERCEL_ENV) return process.env.VERCEL_ENV !== 'production'
   return process.env.NODE_ENV !== 'production'
 }
 
@@ -34,8 +34,8 @@ export function createReference() {
   return `WP-${Array.from(bytes, (b) => REFERENCE_ALPHABET[b % REFERENCE_ALPHABET.length]).join('')}`
 }
 
-/* In-memory rate limit. Each serverless instance keeps its own window, so this is a
-   best-effort guard; move to a shared store such as Upstash Redis for strict limits. */
+/* In-memory rate limit. The site runs as a single long-lived Node process, so this window
+   holds across requests until the service restarts. */
 const RATE_LIMIT = 5
 const RATE_WINDOW_MS = 60 * 60 * 1000
 const submissions = new Map<string, number[]>()
@@ -86,7 +86,17 @@ export function safeFileName(name: string) {
   return name.replace(/[^\w.-]+/g, '_').slice(-100) || 'attachment'
 }
 
-type Email = { from: string; to: string[]; subject: string; html: string; text: string; replyTo?: string }
+export type EmailAttachment = { filename: string; content: string }
+
+type Email = {
+  from: string
+  to: string[]
+  subject: string
+  html: string
+  text: string
+  replyTo?: string
+  attachments?: EmailAttachment[]
+}
 
 export async function sendEmail(email: Email, idempotencyKey: string) {
   try {
@@ -104,6 +114,7 @@ export async function sendEmail(email: Email, idempotencyKey: string) {
         html: email.html,
         text: email.text,
         reply_to: email.replyTo,
+        attachments: email.attachments,
       }),
     })
     if (!res.ok) devLog('Resend rejected an email', res.status)

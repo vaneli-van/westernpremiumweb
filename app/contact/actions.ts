@@ -1,7 +1,6 @@
 'use server'
 
 import { headers } from 'next/headers'
-import { put } from '@vercel/blob'
 import { quoteForm } from '@/content/company'
 import {
   HONEYPOT_FIELD,
@@ -21,6 +20,7 @@ import {
   recordSubmission,
   safeFileName,
   sendEmail,
+  type EmailAttachment,
   verifyTurnstile,
 } from '@/lib/quote-server'
 import { acknowledgementEmail, internalEmail } from '@/lib/quote-emails'
@@ -57,27 +57,24 @@ export async function submitQuote(formData: FormData): Promise<QuoteResult> {
   recordSubmission(ip)
   const reference = createReference()
 
-  let attachment: { name: string; url: string } | null = null
+  let attachment: { name: string } | null = null
+  let files: EmailAttachment[] | undefined
   if (data.attachment) {
-    if (!config.blob) return fail(f.upload)
     if (!(await hasValidSignature(data.attachment))) {
       return fail(f.invalid, { attachment: quoteForm.errors.attachmentType })
     }
-    const name = safeFileName(data.attachment.name)
+    const name = `${reference}-${safeFileName(data.attachment.name)}`
     try {
-      const blob = await put(`quotes/${reference}/${name}`, data.attachment, {
-        access: 'private',
-        addRandomSuffix: true,
-        contentType: data.attachment.type || undefined,
-      })
-      attachment = { name, url: blob.url }
+      const content = Buffer.from(await data.attachment.arrayBuffer()).toString('base64')
+      files = [{ filename: name, content }]
+      attachment = { name }
     } catch (err) {
-      devLog('Attachment upload failed', err instanceof Error ? err.message : 'unknown error')
+      devLog('Attachment could not be read', err instanceof Error ? err.message : 'unknown error')
       return fail(f.upload)
     }
   }
 
-  const delivered = await sendEmail(internalEmail(data, reference, attachment), `${reference}-internal`)
+  const delivered = await sendEmail({ ...internalEmail(data, reference, attachment), attachments: files }, `${reference}-internal`)
   if (!delivered) return fail(f.generic)
 
   // The enquiry has reached the team; a failed acknowledgement should not report the enquiry as lost.

@@ -1,4 +1,3 @@
-import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { IBM_Plex_Sans, PT_Serif_Caption } from 'next/font/google'
 import { SiteHeader } from '@/components/site/site-header'
@@ -80,7 +79,6 @@ export default function RootLayout({
         <SiteHeader />
         <main id="main">{children}</main>
         <SiteFooter />
-        {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
   )

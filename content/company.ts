@@ -50,7 +50,7 @@ export const company = {
   /** Inbox that receives quotation form notifications. */
   enquiriesEmail: 'sales@westernpremium.com.gh',
   /** Sender for form emails. The domain must be verified in Resend before emails will send. */
-  formSender: 'Western Premium <enquiries@westernpremium.com.gh>',
+  formSender: 'Western Premium <quotes@westernpremium.co>',
 
   logoSrc: '/brand/western-premium-logo.svg',
   logoReversedSrc: '/brand/western-premium-logo-reversed.svg',
@@ -345,12 +345,12 @@ export const quoteForm = {
   banners: {
     turnstile: 'Form backend not configured: Turnstile key missing',
     resend: 'Form backend not configured: Resend key missing',
-    blob: 'Form backend not configured: Blob storage token missing. Attachments are disabled.',
+    blob: 'Attachments are disabled.',
   },
   email: {
     internalSubject: 'Quotation request',
     internalHeading: 'New quotation request',
-    attachmentNote: 'Private file in Vercel Blob storage. Sign in to Vercel to open it.',
+    attachmentNote: 'The file is attached to this email.',
     notProvided: 'Not provided',
     none: 'None',
     ackSubject: 'We have received your enquiry',
