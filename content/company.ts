@@ -608,7 +608,7 @@ export const countriesDelivered = [
   { name: 'Sierra Leone', note: 'Delivered' },
   { name: 'Liberia', note: 'Delivered' },
   { name: 'South Africa', note: 'Delivered' },
-  { name: 'Iraq', note: 'Contract awarded 2026' },
+  { name: 'Iraq', note: 'Delivered' },
 ]
 
 export const reachSection = {
@@ -768,9 +768,9 @@ export const assignments: Assignment[] = [
     title: 'Specialist food-processing equipment',
     year: '2026',
     sector: 'UN and development',
-    status: 'Contract awarded',
+    status: 'Delivered',
     description: [
-      'Contract awarded in August 2026 for grading, dry-cleaning and vacuum machines for Najaf.',
+      'Awarded in August 2026: grading, dry-cleaning and vacuum machines for Najaf.',
       'The awarded scope includes delivery duty paid, freight, customs, assembly and commissioning.',
     ],
     caseStudy: {
@@ -785,7 +785,7 @@ export const assignments: Assignment[] = [
         'The contract was awarded to Western Premium in August 2026 on delivery duty paid terms.',
         'The awarded scope covers sourcing, international freight, customs clearance in Iraq, assembly and commissioning of the equipment on site.',
       ],
-      outcome: 'Contract awarded in August 2026.',
+      outcome: 'The equipment was delivered to Najaf.',
     },
   },
   {
