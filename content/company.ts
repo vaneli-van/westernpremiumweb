@@ -497,7 +497,7 @@ export function organisationLabel(id: OrganisationId) {
 
 export const clientsSection = {
   eyebrow: 'Our clients',
-  title: 'Organisations we have supplied',
+  title: 'Organisations we work with',
   intro:
     'Development agencies, public bodies, mining and energy organisations, banks and commercial businesses that have bought equipment and supplies from Western Premium.',
   note: 'Names and logos describe our supply experience. They do not imply endorsement, an exclusive relationship or a current contract.',
