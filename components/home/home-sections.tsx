@@ -132,8 +132,8 @@ export function WhoWeAre() {
           </div>
           <div className="relative aspect-square overflow-hidden bg-navy">
             <Image
-              src="/images/who-we-are.jpg"
-              alt="A Western Premium field technician checks a crated valve against its delivery record on a tablet"
+              src="/images/who-we-are-welcome.jpg"
+              alt="A Western Premium field engineer in company coveralls and a white safety helmet at the warehouse office"
               fill
               sizes="(min-width: 768px) 560px, 100vw"
               className="object-cover"
