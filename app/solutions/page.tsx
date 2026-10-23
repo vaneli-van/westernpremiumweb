@@ -9,7 +9,7 @@ import { assetGovernance, type Solution, solutions, solutionsPage } from '@/cont
 import { cn } from '@/lib/utils'
 
 export const metadata: Metadata = {
-  title: solutionsPage.title,
+  title: solutionsPage.seoTitle,
   description: solutionsPage.metaDescription,
   alternates: { canonical: '/solutions' },
 }

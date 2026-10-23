@@ -7,7 +7,7 @@ import { company, contactPage as copy, quoteForm, solutionOptions } from '@/cont
 import { getFormConfig, showConfigDiagnostics } from '@/lib/quote-server'
 
 export const metadata: Metadata = {
-  title: copy.title,
+  title: copy.seoTitle,
   description: copy.metaDescription,
   alternates: { canonical: '/contact' },
 }

@@ -14,7 +14,7 @@ import {
 } from '@/content/company'
 
 export const metadata: Metadata = {
-  title: experiencePage.title,
+  title: experiencePage.seoTitle,
   description: experiencePage.metaDescription,
   alternates: { canonical: '/case-studies' },
 }

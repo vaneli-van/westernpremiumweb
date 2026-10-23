@@ -109,10 +109,11 @@ export type Solution = {
 export const solutionsPage = {
   eyebrow: 'What we supply',
   title: 'Solutions',
+  seoTitle: 'IT, Industrial and MRO Supply Solutions',
   intro:
     'Four capabilities, one coordinated process. Each engagement is scoped around your specification, quantities, delivery location and timeline.',
   metaDescription:
-    'Enterprise IT infrastructure, technology operations support, industrial and MRO supply, and asset governance and reporting through partner company AssetOne.',
+    'Enterprise IT equipment, technology operations support, industrial spares and MRO supply for organisations in Ghana and West Africa, plus asset tagging and reporting through AssetOne.',
   examplesHeading: 'Examples',
   processEyebrow: 'How we deliver',
   processTitle: 'One process across every capability.',
@@ -241,6 +242,7 @@ export const timelineOptions = [
 
 export const contactPage = {
   title: 'Request a Quote',
+  seoTitle: 'Request a Quote, Accra, Ghana',
   eyebrow: 'Contact',
   intro:
     'Share your specifications, quantities, delivery location and required timeline. Our team will develop a quotation around your scope.',
@@ -507,10 +509,11 @@ export const clientsSection = {
 export const sectorsPage = {
   eyebrow: 'Who we supply',
   title: 'Sectors',
+  seoTitle: 'Supplier to Mining, Energy and UN Agencies',
   intro:
     'Western Premium supplies organisations whose operations depend on equipment arriving to specification, on time and with the documentation their procurement processes require.',
   metaDescription:
-    'Typical requirements and procurement characteristics across UN, development and public institutions, mining and minerals, energy, power, oil and gas, and banking and commercial organisations.',
+    'Equipment supply for UN agencies, development programmes, public institutions, mining, energy, oil and gas, and banking in Ghana and West Africa, delivered to specification with full documentation.',
   itemsHeading: 'Typically supplied',
   organisationsHeading: 'Organisations supplied',
   disclaimer:
@@ -628,6 +631,7 @@ export const reachSection = {
 export const experiencePage = {
   eyebrow: 'Case studies',
   title: 'Case studies',
+  seoTitle: 'Procurement Case Studies, Ghana to Iraq',
   intro:
     'How Western Premium has met requirements for development agencies, public bodies and commercial organisations, from field technology in Ghana to specialist equipment for Iraq.',
   metaDescription:
@@ -901,6 +905,7 @@ export const leadership: Leader[] = [
 
 export const aboutPage = {
   title: 'About Western Premium',
+  seoTitle: 'About Western Premium | Ghanaian Equipment Supplier',
   statement: 'An indigenous Ghanaian company, built around institutional procurement.',
   metaDescription:
     'Western Premium Company Limited is an indigenous Ghanaian company in Accra supplying IT equipment, industrial spares and operational essentials to institutional and commercial buyers.',
@@ -925,6 +930,7 @@ export const aboutPage = {
 export const assetOneAfricaPage = {
   eyebrow: 'Partner company',
   title: 'AssetOne',
+  seoTitle: 'Asset Tagging and Tracking with AssetOne',
   heading: 'Complementary expertise across the asset lifecycle.',
   intro:
     'Western Premium and its partner company, AssetOne, offer complementary capabilities for organisations managing physical assets. Western Premium focuses on equipment supply, procurement coordination and related support. AssetOne provides asset tracking and reporting solutions, with scope agreed around client requirements.',

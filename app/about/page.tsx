@@ -5,10 +5,10 @@ import { ProfileDownload } from '@/components/site/profile-download'
 import { aboutPage, company, type Leader, leadership, principles, showPortraitPlaceholders } from '@/content/company'
 
 export const metadata: Metadata = {
-  title: { absolute: `${aboutPage.title}` },
+  title: { absolute: aboutPage.seoTitle },
   description: aboutPage.metaDescription,
   alternates: { canonical: '/about' },
-  openGraph: { title: aboutPage.title, description: aboutPage.metaDescription, url: '/about' },
+  openGraph: { title: aboutPage.seoTitle, description: aboutPage.metaDescription, url: '/about' },
 }
 
 export default function AboutPage() {

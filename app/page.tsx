@@ -12,7 +12,9 @@ import {
 } from '@/components/home/home-sections'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Western Premium | Reliable equipment. Lasting value.' },
+  title: { absolute: 'IT and Industrial Equipment Supplier in Ghana | Western Premium' },
+  description:
+    'Western Premium supplies enterprise IT, industrial spares and MRO equipment to UN agencies, mining, energy and public institutions in Ghana, West Africa and beyond.',
   alternates: { canonical: '/' },
 }
 

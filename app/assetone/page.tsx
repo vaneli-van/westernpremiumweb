@@ -6,11 +6,11 @@ import { Container, PageHeader } from '@/components/site/page-primitives'
 import { assetOneAfrica, assetOneAfricaPage } from '@/content/company'
 
 export const metadata: Metadata = {
-  title: assetOneAfricaPage.title,
+  title: assetOneAfricaPage.seoTitle,
   description: assetOneAfricaPage.metaDescription,
   alternates: { canonical: '/assetone' },
   openGraph: {
-    title: `${assetOneAfricaPage.title} | Western Premium`,
+    title: `${assetOneAfricaPage.seoTitle} | Western Premium`,
     description: assetOneAfricaPage.metaDescription,
     url: '/assetone',
   },

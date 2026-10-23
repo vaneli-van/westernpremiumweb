@@ -5,10 +5,10 @@ import { ClosingCta, Container, PageHeader } from '@/components/site/page-primit
 import { organisationLabel, sectors, sectorsPage } from '@/content/company'
 
 export const metadata: Metadata = {
-  title: sectorsPage.title,
+  title: sectorsPage.seoTitle,
   description: sectorsPage.metaDescription,
   alternates: { canonical: '/sectors' },
-  openGraph: { title: `${sectorsPage.title} | Western Premium`, description: sectorsPage.metaDescription, url: '/sectors' },
+  openGraph: { title: `${sectorsPage.seoTitle} | Western Premium`, description: sectorsPage.metaDescription, url: '/sectors' },
 }
 
 export default function SectorsPage() {
