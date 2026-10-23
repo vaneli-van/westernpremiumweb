@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Hero } from '@/components/home/hero'
 import {
+  Clients,
   Engage,
   ExploreMore,
   SelectedWork,
@@ -23,6 +24,7 @@ export default function HomePage() {
       <WhatWeDoSection />
       <ExploreMore />
       <SelectedWork />
+      <Clients />
       <Engage />
     </>
   )

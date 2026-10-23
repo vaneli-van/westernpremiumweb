@@ -375,92 +375,115 @@ export type Organisation = {
   publicationApproved: boolean
   /** Set to true once an approved logo asset has been supplied. */
   logoApproved: boolean
+  /** Logo file in /public/clients, with its intrinsic size. Shown only when logoApproved is true. */
+  logo?: { src: string; width: number; height: number }
 }
 
 export const organisations = {
   wfp: {
     name: 'World Food Programme',
     anonymisedLabel: 'International humanitarian agency',
-    publicationApproved: false,
-    logoApproved: false,
+    publicationApproved: true,
+    logoApproved: true,
+    logo: { src: '/clients/wfp.svg', width: 207, height: 210 },
   },
   unhrd: {
     name: 'UNHRD',
     anonymisedLabel: 'Humanitarian response depot',
-    publicationApproved: false,
-    logoApproved: false,
+    publicationApproved: true,
+    logoApproved: true,
+    logo: { src: '/clients/unhrd.svg', width: 102, height: 135 },
   },
   care: {
     name: 'CARE Ghana',
     anonymisedLabel: 'International non-governmental organisation',
-    publicationApproved: false,
-    logoApproved: false,
+    publicationApproved: true,
+    logoApproved: true,
+    logo: { src: '/clients/care.svg', width: 375, height: 121 },
   },
   pmiEvolve: {
     name: 'PMI Evolve Ghana',
     anonymisedLabel: 'Public health programme',
-    publicationApproved: false,
-    logoApproved: false,
+    publicationApproved: true,
+    logoApproved: true,
+    logo: { src: '/clients/usaid.png', width: 320, height: 104 },
   },
   jhpiego: {
     name: 'Jhpiego',
     anonymisedLabel: 'International health organisation',
-    publicationApproved: false,
-    logoApproved: false,
+    publicationApproved: true,
+    logoApproved: true,
+    logo: { src: '/clients/jhpiego.svg', width: 340, height: 92 },
+  },
+  agra: {
+    name: 'AGRA',
+    anonymisedLabel: 'Agricultural development organisation',
+    publicationApproved: true,
+    logoApproved: true,
+    logo: { src: '/clients/agra.png', width: 478, height: 181 },
   },
   mdf: {
     name: 'Minerals Development Fund',
     anonymisedLabel: 'Minerals sector development fund',
-    publicationApproved: false,
-    logoApproved: false,
+    publicationApproved: true,
+    logoApproved: true,
+    logo: { src: '/clients/mdf.png', width: 400, height: 138 },
   },
   miif: {
     name: 'Minerals Income Investment Fund',
     anonymisedLabel: 'Minerals sector investment fund',
-    publicationApproved: false,
-    logoApproved: false,
+    publicationApproved: true,
+    logoApproved: true,
+    logo: { src: '/clients/miif.png', width: 189, height: 56 },
   },
   anglogoldMalaria: {
     name: 'AngloGold Ashanti Malaria Control',
     anonymisedLabel: 'Mining sector health programme',
-    publicationApproved: false,
-    logoApproved: false,
+    publicationApproved: true,
+    logoApproved: true,
+    logo: { src: '/clients/anglogold.svg', width: 196, height: 59 },
   },
   modec: {
     name: 'MODEC Production Services Ghana',
     anonymisedLabel: 'Offshore production services company',
-    publicationApproved: false,
-    logoApproved: false,
+    publicationApproved: true,
+    logoApproved: true,
+    logo: { src: '/clients/modec.png', width: 360, height: 86 },
   },
   vra: {
     name: 'Volta River Authority',
     anonymisedLabel: 'National power utility',
-    publicationApproved: false,
-    logoApproved: false,
+    publicationApproved: true,
+    logoApproved: true,
+    logo: { src: '/clients/vra.png', width: 240, height: 180 },
   },
   daystar: {
     name: 'Daystar Power',
     anonymisedLabel: 'Commercial power provider',
-    publicationApproved: false,
-    logoApproved: false,
+    publicationApproved: true,
+    logoApproved: true,
+    logo: { src: '/clients/daystar.png', width: 522, height: 235 },
   },
   absa: {
     name: 'Absa Bank Ghana',
     anonymisedLabel: 'Pan-African bank',
-    publicationApproved: false,
-    logoApproved: false,
+    publicationApproved: true,
+    logoApproved: true,
+    logo: { src: '/clients/absa.svg', width: 200, height: 200 },
   },
   ernestChemists: {
     name: 'Ernest Chemists',
     anonymisedLabel: 'Pharmaceutical company',
-    publicationApproved: false,
-    logoApproved: false,
+    publicationApproved: true,
+    logoApproved: true,
+    logo: { src: '/clients/ernest.png', width: 424, height: 92 },
   },
   fairgreen: {
     name: 'Fairgreen Limited',
     anonymisedLabel: 'Commercial organisation',
-    publicationApproved: false,
-    logoApproved: false,
+    publicationApproved: true,
+    logoApproved: true,
+    logo: { src: '/clients/fairgreen.png', width: 840, height: 400 },
   },
 } satisfies Record<string, Organisation>
 
@@ -470,6 +493,15 @@ export type OrganisationId = keyof typeof organisations
 export function organisationLabel(id: OrganisationId) {
   const org: Organisation = organisations[id]
   return org.publicationApproved ? org.name : org.anonymisedLabel
+}
+
+export const clientsSection = {
+  eyebrow: 'Our clients',
+  title: 'Organisations we have supplied',
+  intro:
+    'Development agencies, public bodies, mining and energy organisations, banks and commercial businesses that have bought equipment and supplies from Western Premium.',
+  note: 'Names and logos describe our supply experience. They do not imply endorsement, an exclusive relationship or a current contract.',
+  cta: 'View selected experience',
 }
 
 export const sectorsPage = {
@@ -482,7 +514,7 @@ export const sectorsPage = {
   itemsHeading: 'Typically supplied',
   organisationsHeading: 'Organisations supplied',
   disclaimer:
-    'Organisation names are listed to describe our supply experience. Their inclusion does not imply endorsement, an exclusive relationship or a current contract. Some organisations are described by sector until permission to publish their names has been confirmed.',
+    'Organisation names are listed to describe our supply experience. Their inclusion does not imply endorsement, an exclusive relationship or a current contract.',
   experienceLabel: 'View selected experience',
 }
 
@@ -515,7 +547,7 @@ export const sectors: {
       'Laboratory and medical-adjacent equipment',
       'Consumables',
     ],
-    organisationIds: ['wfp', 'unhrd', 'care', 'pmiEvolve', 'jhpiego'],
+    organisationIds: ['wfp', 'unhrd', 'care', 'pmiEvolve', 'jhpiego', 'agra'],
   },
   {
     id: 'mining',
@@ -579,7 +611,7 @@ export const experiencePage = {
     'Selected organisations and assignments supplied by Western Premium across UN and development, mining and minerals, energy and power, and banking and commercial sectors.',
   organisationsHeading: 'Organisations supplied',
   organisationsNote:
-    'Some organisations are described by sector until permission to publish their names has been confirmed.',
+    'Listing an organisation does not imply endorsement, an exclusive relationship or a current contract.',
   assignmentsHeading: 'Selected assignments',
   footnote: 'Further references are available on request as part of a formal tender or prequalification process.',
 }

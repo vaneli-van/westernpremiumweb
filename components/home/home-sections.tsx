@@ -1,7 +1,16 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowUpRight, ChevronRight } from 'lucide-react'
-import { assignmentClient, assignments, company, solutions, whatsappHref } from '@/content/company'
+import {
+  assignmentClient,
+  assignments,
+  clientsSection,
+  company,
+  organisations,
+  solutions,
+  whatsappHref,
+  type Organisation,
+} from '@/content/company'
 import { cn } from '@/lib/utils'
 import { WhatWeDo } from './what-we-do'
 
@@ -250,6 +259,50 @@ export function SelectedWork() {
               </li>
             ))}
           </ul>
+        </div>
+      </Wrap>
+    </section>
+  )
+}
+
+const clientList: Organisation[] = Object.values(organisations).filter((o: Organisation) => o.publicationApproved)
+
+export function Clients() {
+  return (
+    <section aria-labelledby="clients-title">
+      <Wrap className="flex flex-col gap-12 py-20">
+        <div className="flex flex-col items-center gap-4 text-center">
+          <Rule className="w-5" />
+          <Eyebrow>{clientsSection.eyebrow}</Eyebrow>
+          <Heading id="clients-title">{clientsSection.title}</Heading>
+          <p className="max-w-2xl text-pretty text-[15px] font-light leading-relaxed text-muted-foreground">
+            {clientsSection.intro}
+          </p>
+        </div>
+        <ul className="grid grid-cols-3 gap-px border border-border bg-border sm:grid-cols-5">
+          {clientList.map((org) => (
+            <li key={org.name} className="flex h-24 items-center justify-center bg-background p-3 sm:h-auto sm:aspect-[3/2] sm:p-6">
+              {org.logoApproved && org.logo ? (
+                <Image
+                  src={org.logo.src}
+                  alt={org.name}
+                  title={org.name}
+                  width={org.logo.width}
+                  height={org.logo.height}
+                  unoptimized
+                  className="h-auto max-h-14 w-auto max-w-full object-contain opacity-80 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0"
+                />
+              ) : (
+                <span className="text-balance text-center font-serif text-[13px] leading-snug text-navy sm:text-[15px]">{org.name}</span>
+              )}
+            </li>
+          ))}
+        </ul>
+        <div className="flex flex-col items-center gap-4 text-center">
+          <p className="max-w-2xl text-pretty text-[13px] font-light leading-relaxed text-muted-foreground">
+            {clientsSection.note}
+          </p>
+          <TextLink href="/experience">{clientsSection.cta}</TextLink>
         </div>
       </Wrap>
     </section>
