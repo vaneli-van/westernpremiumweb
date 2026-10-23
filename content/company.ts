@@ -14,9 +14,9 @@ export const company = {
     'Western Premium Company Limited is an indigenous Ghanaian enterprise supply and infrastructure company supplying IT equipment, industrial spares and operational essentials.',
   purpose:
     'To improve the lifecycle of our clients’ assets through the supply and service of quality IT and maintenance, repair and operations equipment and consumables.',
-  phone: '+233 55 283 6232',
-  phoneHref: 'tel:+233552836232',
-  email: 'samuel@westernpremium.com.gh',
+  phone: '+233 59 275 7921',
+  phoneHref: 'tel:+233592757921',
+  email: 'sales@westernpremium.com.gh',
   address: {
     street: 'E86 Champagne Street',
     locality: 'East Airport',
@@ -40,7 +40,7 @@ export const company = {
   /** Countries listed as served in search-engine data. */
   areaServed: ['Ghana', 'West Africa'],
   /** WhatsApp number in international format, digits only, used for wa.me links. */
-  whatsappNumber: '233552836232',
+  whatsappNumber: '233592757921',
   whatsappMessage: 'Hello Western Premium, I would like to request a quotation.',
   /**
    * Typical turnaround for a quotation, e.g. 'within 2 business days'. Shown beside calls to action
@@ -48,7 +48,7 @@ export const company = {
    */
   quoteResponseTime: null as string | null,
   /** Inbox that receives quotation form notifications. */
-  enquiriesEmail: 'samuel@westernpremium.com.gh',
+  enquiriesEmail: 'sales@westernpremium.com.gh',
   /** Sender for form emails. The domain must be verified in Resend before emails will send. */
   formSender: 'Western Premium <enquiries@westernpremium.com.gh>',
 
