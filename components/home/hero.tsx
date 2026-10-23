@@ -8,8 +8,8 @@ import { cn } from '@/lib/utils'
 
 const slides: { image: string; position?: string; headline: string[]; subline: string }[] = [
   {
-    image: '/images/hero-dispatch.jpg',
-    position: '50% 60%',
+    image: '/images/hero-warehouse.jpg',
+    position: '50% 55%',
     headline: ['We are Western Premium.', 'Reliable equipment. Lasting value.'],
     subline: 'We source and deliver the equipment that keeps institutions and businesses across Ghana running.',
   },
